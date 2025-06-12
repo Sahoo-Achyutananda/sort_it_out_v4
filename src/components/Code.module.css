@@ -1,0 +1,46 @@
+.code {
+  box-sizing: border-box;
+  width: 50%;
+  height: auto;
+  padding: 20px;
+
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* background-color: #282a36ad; */
+}
+
+.code > span {
+  font: 800 30px "Poppins", sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+@media (max-width: 650px) {
+  .code {
+    font-size: 13px;
+  }
+  .code > span {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 450px) {
+  .code {
+    font-size: 12px;
+  }
+  .code > span {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 850px) {
+  .code {
+    width: 100vw;
+  }
+}

@@ -1,0 +1,147 @@
+In React, you can access DOM elements using refs, which you're already doing with useRef. The issue you're facing is likely related to timing - when you're trying to access the arrayContainerRef.current, it might be null during the initial render.
+
+Here's how to properly access the DOM element and calculate the width:
+
+    First, make sure the ref is actually pointing to the element
+
+    Access the ref value at the right time (after the component has mounted)
+
+-> initially i didnt have the array in the state of useReducer, i did it the way like i did in v1 ... generated boxes of different heights using some util funcx ... - that method may prove to be slightly difficult as we have to select dom elements and compare and swap styles - so i thought of adding the array of random numbers in the useReducer state and see what happens
+
+-> check if a nunmber is in an array in JS ??
+
+flushSync flushes the entire tree and actually forces complete re-rendering for updates that happen inside of a call, so you should use it very sparingly. This way it doesn’t break the guarantee of internal consistency between props, state, and refs.
+
+-> i used flushsync to prevent the double click stuff
+
+RACE MODE IS CAUSING A LOT OF ISSUES - I'M TRYING TO CHANGE THE MODEL COMPLETELTY
+
+the main state will contain -
+
+state = {
+array : []
+value :
+speed :
+raceStarted :
+selectedAlgorithm :
+activeAlgorithms : {
+// i'll pass this into the ArrayConatiner
+bubble : {
+array : [] --->synced with parent
+value : --->synced with parent
+speed : --->synced with parent
+
+            isSorting :
+            highlightedIndices : []
+            selectedIndices : []
+            hold : []
+            time :
+            fn :
+        }
+    }
+
+}
+
+reducer function cases : - the algoName has to be passed separately -> this shouldnt affect the existing standalone vizualizers ! <because we're not using it there>
+
+    // dispatch({type : "arrayMovements", payload : {algoName : "bubble", array : [...array] }})
+    case "arrayMovements":
+      return {
+        ...state,
+        activeAlgorithms : {
+            ...activeAlgorithms,
+            [action.payload.algoName]: {
+                array : action.payload.array,
+            },
+        }
+      };
+
+    // dispatch({type : "selectedIndices", payload : {algoName : "bubble", array : [...array] }})
+    case "selectedIndices":
+      return {
+        ...state,
+        activeAlgorithms : {
+            ...activeAlgorithms,
+            [action.payload.algoName] : {
+                selectedIndices : [...action.payload.selectedIndices]
+            }
+        }
+      };
+
+    case "highlightIndices":
+      return {
+        ...state,
+        highlightIndices: action.payload,
+      };
+    case "sortingStarted":
+      return {
+        ...state,
+        isSorting: true,
+        time: 0,
+      };
+    case "hold":
+      return {
+        ...state,
+        hold: action.payload,
+      };
+    case "tick":
+      return {
+        ...state,
+        time: state.isSorting ? state.time + 1 : state.time,
+      };
+    case "sortingCompleted":
+      return {
+        ...state,
+        isSorting: false,
+        selectedIndices: [],
+        highlightIndices: [],
+        hold: [],
+      };
+
+// BUILDING A LEADERBOARD ->i had to sort the objects on the basis of time - it had a complex code 
+
+<div>
+  <h2>LEADERBOARD</h2>
+  <ul>
+    {Object.entries(state.activeAlgorithms)
+      .sort(([, a], [, b]) => a.time - b.time) // sort by time ascending
+      .map(([key, algo], index) => (
+        <li key={key}>
+          #{index + 1} - {key.toUpperCase()} — {algo.time}s
+        </li>
+      ))}
+  </ul>
+</div>
+
+.entries converts the object's key-value pairs in array [[key,value],[key,value]] like this--- .... 
+
+
+q) when isSorting of all algos in activeAlgorithms is set to false .. then racefinished must be set to false - 
+
+prompts - 
+
+function runAlgos() {
+    Object.keys(state.activeAlgorithms).forEach((key) => {
+      const algoFn = state.activeAlgorithms[key].fn;
+      const initialArray = [...state.activeAlgorithms[key].array]; // Use a copy
+      algoFn(
+        initialArray,
+        () => stateRef.current.activeAlgorithms[key],
+        dispatch
+      );
+    });
+    dispatch({ type: "RACE-COMPLETED" });
+  }
+
+how can i dispatch race -completed only at the end ?? now due to async ops - it is executed first
+
+solution given was to use Promise.all() -> but it would require the algos to call resolve() within the code
+-> actual solution : we can check the "isSorting " every time
+-> learnt a new method : every()
+-> 
+Comparison with Other Array Methods
+Method	Checks For...	Returns true When...
+.every()	All elements pass	Every element satisfies the condition.
+.some()	At least one element passes	Any element satisfies the condition.
+.filter()	Filters elements	Returns a new array of matching elements.
+.find()	Finds the first match	Returns the first matching element.

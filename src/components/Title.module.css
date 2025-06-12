@@ -1,0 +1,18 @@
+@import url("https://fonts.cdnfonts.com/css/maus");
+/* @import url("https://fonts.cdnfonts.com/css/minecraft-3"); */
+.title {
+  height: 70px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: "Maus", sans-serif;
+  font-size: 50px;
+  letter-spacing: 5%;
+  font-weight: 700;
+  color: aliceblue;
+
+  /* background-color: #1c191e56; */
+}

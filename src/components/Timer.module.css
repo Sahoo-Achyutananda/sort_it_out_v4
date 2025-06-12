@@ -1,0 +1,15 @@
+.timer {
+  width: 85px;
+  height: 9px;
+  padding: 14px;
+  margin-right: 5px;
+  color: white;
+  text-align: center;
+  font: 500 14px "Roboto", sans-serif;
+  border-radius: 7px;
+  background-color: rgba(240, 248, 255, 0.045);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

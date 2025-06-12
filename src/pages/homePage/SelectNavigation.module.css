@@ -1,0 +1,36 @@
+.buttonAdd {
+  border: none;
+  width: 40px;
+  height: 40px;
+  padding: 7px;
+  padding-inline: 10px;
+  border-radius: 4px;
+}
+
+.buttonAdd {
+  background-color: #7c3aed;
+}
+
+.buttonAdd:hover {
+  background-color: #1e1b4b;
+  border: solid 0.5px #7c3aed;
+}
+
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.select {
+  width: 350px;
+}
+@media (max-width: 600px) {
+  .select {
+    width: 200px !important;
+  }
+}

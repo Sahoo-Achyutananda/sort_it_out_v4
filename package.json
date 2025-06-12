@@ -1,0 +1,57 @@
+{
+  "name": "sort_it_out",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/roboto": "^5.2.5",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
+    "@supabase/supabase-js": "^2.49.10",
+    "canvas-confetti": "^1.9.3",
+    "clsx": "^2.1.1",
+    "eslint-config-react-app": "^7.0.1",
+    "ldrs": "^1.1.7",
+    "motion": "^12.14.0",
+    "postgres": "^3.4.7",
+    "react": "^19.1.0",
+    "react-code-blocks": "^0.1.6",
+    "react-dom": "^19.1.0",
+    "react-element-to-jsx-string": "^17.0.1",
+    "react-router-dom": "^7.6.0",
+    "react-scroll-into-view-if-needed": "^3.0.1",
+    "react-toastify": "^11.0.5",
+    "tailwind-merge": "^3.3.0",
+    "tech-stack-icons": "^2.1.0",
+    "typed.js": "^2.1.0",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "overrides": {
+    "react-dom": "^19.1.0",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
+  }
+}

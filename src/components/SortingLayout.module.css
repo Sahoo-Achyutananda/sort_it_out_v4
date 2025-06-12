@@ -1,0 +1,74 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: #241f32;
+  /* background: #1C191E; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+.SortingLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.utilities {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-top: 15px;
+
+  width: 90vw;
+}
+
+/* @media (max-width: 600px) {
+  .utilities {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    margin-top: 15px;
+
+    width: 90vw;
+  }
+} */
+
+.genInformation {
+  display: flex;
+  flex-direction: row;
+  background-color: #1c191e56;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.infoDiv {
+  display: flex;
+  flex-direction: row;
+
+  width: 90%;
+
+  justify-content: center;
+  /* align-items: center; */
+}
+
+@media (max-width: 850px) {
+  .infoDiv {
+    display: flex;
+    /* width: 100%; */
+    flex-direction: column;
+    align-items: center;
+  }
+}

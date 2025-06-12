@@ -1,0 +1,433 @@
+.body {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.HeroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* height: 700px; */
+}
+.title {
+  font: 30px "Montserrat", sans-serif;
+}
+
+.subtitle {
+  /* position: absolute; */
+  margin-top: 10px;
+  font: italic 15px "Roboto", sans-serif;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  /* bottom: 126.4px;
+  left: 277px; */
+}
+
+.titleCard {
+  padding: 30px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+
+  background-color: rgba(43, 35, 62, 0.7);
+  color: white;
+  font: 500 30px "Roboto", sans-serif;
+  /* border: solid #7c3aed; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  animation: rainbow-glow-big 3s infinite linear;
+}
+
+.RatingDiv {
+  margin-top: 30px;
+  background-color: #ffffffdb;
+  /* padding: 10px 15px; */
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 50px;
+  font: 500 1rem "Roboto", sans-serif;
+  color: rgb(0, 0, 0);
+  gap: 5px;
+
+  width: auto;
+}
+
+.Rating {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: auto;
+}
+
+.avgRating {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 2rem "Poppins", sans-serif;
+}
+
+.totalRating {
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.RatingLink {
+  color: white;
+  background-color: #8a2be2;
+  height: 100%;
+  width: auto;
+  padding: 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  transition: background 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.RatingLink:hover {
+  background-color: #591498;
+}
+
+.header {
+  width: 100%;
+  height: 500px;
+
+  color: white;
+  font: 500 30px "Roboto", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 850px) {
+  .raceMode {
+    display: flex;
+    flex-direction: column !important;
+    gap: 20px;
+  }
+
+  .raceModeText {
+    width: 90% !important;
+  }
+
+  .raceModeVideo {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 20px !important;
+  }
+
+  .subtitle {
+    /* bottom: 121.8px !important;
+    left: 171.8px !important; */
+  }
+}
+
+@media (max-width: 570px) {
+  .card {
+    width: 350px !important;
+  }
+  .raceModeText > h3 {
+    font: 800 25px "Raleway", sans-serif !important;
+  }
+
+  .raceModeText > p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font: 300 13px "Poppins", sans-serif;
+  }
+}
+
+@media (max-width: 370px) {
+  .card {
+    width: 300px !important;
+  }
+  .raceModeText > h3 {
+    /* border-bottom: 3px solid ; */
+    font: 800 22px "Raleway", sans-serif !important;
+  }
+  .raceModeText > h3::after {
+    height: 3px;
+  }
+
+  .raceModeText > p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font: 300 13px "Poppins", sans-serif;
+  }
+  .titleCard {
+    width: auto;
+  }
+}
+
+.element {
+  /* margin-top: 20px; */
+}
+
+.content {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 30px;
+}
+
+.card {
+  width: 400px;
+  height: 500px;
+  border-radius: 10px;
+  background-color: rgba(97, 61, 139, 0.129);
+  /* border: solid 2px rgba(80, 6, 199, 0.69); */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.025);
+}
+
+.image {
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  /* box-shadow: inset 0 -20px 20px -10px rgba(0, 0, 0, 0.4); */
+}
+
+.image::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.481), transparent);
+}
+
+.image > img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.title {
+  font: 800 25px "Raleway", sans-serif;
+  color: aliceblue;
+  margin: 10px 10px;
+}
+
+.description {
+  width: 80%;
+  font: 500 16px "Roboto", sans-serif;
+  color: white;
+  text-align: justify;
+  margin-bottom: 10px;
+  /* margin: 10px; */
+}
+
+.timeComplexity,
+.spaceComplexity {
+  width: 80%;
+  background-color: rgba(240, 248, 255, 0.053);
+  padding: 10px;
+  border-radius: 5px;
+  margin-inline: 10px;
+  margin-bottom: 10px;
+
+  font: 500 16px "Poppins", sans-serif;
+  color: white;
+}
+
+.raceModeSection {
+  /* margin-top: 30px; */
+  width: 100%;
+  height: auto;
+  background-color: rgb(59, 11, 104);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.raceMode {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 90%;
+  height: auto;
+  /* gap: 20px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: blueviolet; */
+}
+
+.raceModeText {
+  box-sizing: border-box;
+  font: "Poppins", sans-serif;
+  color: white;
+  width: 50%;
+  padding-right: 20px;
+}
+
+.raceModeText > h3 {
+  position: relative;
+  width: fit-content;
+  font: 800 30px "Raleway", sans-serif;
+  padding-bottom: 5px;
+}
+
+/* Underline animation using ::after */
+.raceModeText > h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  width: 0;
+  background-color: rgb(200, 7, 91);
+  animation: underline 4s ease-out infinite;
+}
+
+@keyframes underline {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.raceModeText > p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font: 500 15px "Roboto", sans-serif;
+  line-height: 150%;
+}
+
+.raceModeVideo {
+  box-sizing: border-box;
+  width: 50%;
+  height: 250px;
+  position: relative;
+
+  /* margin-left: 20px; */
+}
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  position: absolute;
+}
+
+.video {
+  animation: rainbow-glow 3s infinite linear;
+}
+
+@keyframes rainbow-glow {
+  0% {
+    box-shadow: 0 0 3px 1.5px #fff, 0 0 5px 3px #f0f, 0 0 7px 3px #0ff;
+  }
+  33% {
+    box-shadow: 0 0 3px 1.5px #fff, 0 0 5px 3px #ff0, 0 0 7px 3px #f0f;
+  }
+  66% {
+    box-shadow: 0 0 3px 1.5px #fff, 0 0 5px 3px #0ff, 0 0 7px 3px #ff0;
+  }
+  100% {
+    box-shadow: 0 0 3px 1.5px #fff, 0 0 5px 3px #f0f, 0 0 7px 3px #0ff;
+  }
+}
+
+@keyframes rainbow-glow-big {
+  0% {
+    box-shadow: 0 0 6px 3px #fff, 0 0 10px 6px #f0f, 0 0 14px 6px #0ff;
+  }
+  33% {
+    box-shadow: 0 0 6px 3px #fff, 0 0 10px 6px #ff0, 0 0 14px 6px #f0f;
+  }
+  66% {
+    box-shadow: 0 0 6px 3px #fff, 0 0 10px 6px #0ff, 0 0 14px 6px #ff0;
+  }
+  100% {
+    box-shadow: 0 0 6px 3px #fff, 0 0 10px 6px #f0f, 0 0 14px 6px #0ff;
+  }
+}
+
+.raceModeButton {
+  border-radius: 5px;
+  border: solid 2px #8a2be2;
+  padding: 10px 20px;
+  background-color: white;
+  color: #6c63ff;
+  font: 500 15px "Roboto", sans-serif;
+}
+.raceModeButton:hover {
+  background-color: #8a2be2;
+  border: solid 2px white;
+  color: white;
+  cursor: pointer;
+}
+
+.complexities {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

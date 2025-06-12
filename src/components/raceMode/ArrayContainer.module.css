@@ -1,0 +1,109 @@
+.arrayContainer {
+  background-color: rgba(236, 236, 236, 0.042);
+  /* background-color: #282a36; */
+  height: 350px;
+  width: 90vw;
+
+  display: flex;
+  flex-direction: row;
+
+  overflow-x: none;
+  /* margin-bottom: 20px; */
+  border-radius: 5px;
+  overflow-x: auto;
+  font-size: 12px;
+  /* padding: 5px; */
+  box-sizing: border-box;
+}
+
+.bar {
+  /* margin-bottom: 1px;
+  margin-top: 1px; */
+  margin-inline: 1px;
+  background: linear-gradient(rgb(103, 3, 204));
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+
+  transition: all 0.1s ease-in-out;
+}
+
+.bar:hover {
+  transform: translateY(10px);
+  background: linear-gradient(rgb(77, 1, 152));
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: float 1s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(10px) scale(1.05);
+  }
+  50% {
+    transform: translateY(15px) scale(1.05);
+  }
+}
+
+.box {
+  flex-shrink: 0; /* Prevent shrinking */
+  width: 70px; /* Fixed width */
+  height: 70px; /* Fixed height */
+  background: linear-gradient(rebeccapurple, rgb(132, 48, 95));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-inline: 2px;
+}
+.barContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.index {
+  /* box-sizing: border-box; */
+  background-color: khaki;
+  color: black;
+  width: auto;
+  /* width: 20px; */
+  margin-inline: 1px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.6rem;
+}
+.selected {
+  background: #4ef578;
+  margin-inline: 1px;
+}
+
+/* Add these to your ArrayContainer.module.css */
+.bar {
+  transition: height 0.3s ease-out, background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.barContainer {
+  transition: transform 0.3s ease-in-out;
+}
+
+.index {
+  background: khaki;
+  color: black;
+  /* transition: all 0.3s ease; */
+}
+
+.highlightedIndex {
+  background: #4ef578;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .index {
+    font-size: 0.4rem;
+  }
+}

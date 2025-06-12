@@ -1,0 +1,79 @@
+.backgroundVideo {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 80vh;
+  background: linear-gradient(
+    -45deg,
+    #2a003f,
+    /* deep plum */ #4b0082,
+    /* indigo */ #800080,
+    /* classic purple */ #9d00ff,
+    /* vivid violet */ #b266ff,
+    /* soft lavender */ #4b0082 /* back to indigo for loop */
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Optional: Slightly reduce animation load on mobile */
+@media (max-width: 768px) {
+  .backgroundVideo {
+    height: 75vh;
+    background-size: 300% 300%;
+    animation: gradientBG 20s ease infinite;
+  }
+}
+
+@media (max-width: 450px) {
+  .backgroundVideo {
+    height: 75vh;
+    background-size: 200% 200%;
+    animation: gradientBG 10s ease infinite;
+  }
+}
+
+.backgroundVideo > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.video {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: fill;
+  z-index: -1;
+
+  opacity: 0.1;
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
