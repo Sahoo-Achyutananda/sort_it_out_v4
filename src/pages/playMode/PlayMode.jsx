@@ -5,13 +5,22 @@ import { useRef } from "react";
 
 import {
   DndContext,
-  useDraggable,
-  useDroppable,
   closestCenter,
-  PointerSensor,
+  MouseSensor,
+  KeyboardSensor,
+  TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+
+import {
+  SortableContext,
+  useSortable,
+  arrayMove,
+  horizontalListSortingStrategy,
+  //   rectSwappingStrategy,
+} from "@dnd-kit/sortable";
+
 import { CSS } from "@dnd-kit/utilities";
 
 function PlayMode() {
@@ -19,12 +28,17 @@ function PlayMode() {
   const { dispatch, state } = usePlayModeContext();
   const ArrayContainerRef = useRef();
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
-  );
+  const mouseSensor = useSensor(MouseSensor);
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5,
+    },
+  });
+  const keyboardSensor = useSensor(KeyboardSensor);
+  const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
   function handleAlgoSelect(e) {
-    e.preventDefault();
     const algo = e.target.value;
     setSearchParams({ algo });
     dispatch({ type: "SET_ALGO", payload: algo });
@@ -32,19 +46,13 @@ function PlayMode() {
 
   function handleDragEnd(event) {
     const { active, over } = event;
+    console.log(active, over);
     if (!over || active.id === over.id) return;
 
-    const oldIndex = state.array.findIndex(
-      (val) => val === parseInt(active.id)
-    );
-    const newIndex = state.array.findIndex((val) => val === parseInt(over.id));
+    const oldIndex = parseInt(active.id);
+    const newIndex = parseInt(over.id);
 
-    const newArray = [...state.array];
-    [newArray[oldIndex], newArray[newIndex]] = [
-      newArray[newIndex],
-      newArray[oldIndex],
-    ];
-
+    const newArray = arrayMove(state.array, oldIndex, newIndex);
     dispatch({ type: "SET_ARRAY", payload: newArray });
   }
 
@@ -70,31 +78,30 @@ function PlayMode() {
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
       >
-        <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
-          {state.array.map((value) => (
-            <Bar key={value} id={value.toString()} height={value} />
-          ))}
-        </div>
+        <SortableContext
+          items={state.array.map((_, index) => index.toString())}
+          strategy={horizontalListSortingStrategy}
+        >
+          <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
+            {state.array.map((value, index) => (
+              <Bar key={index} id={index.toString()} height={value} />
+            ))}
+          </div>
+        </SortableContext>
       </DndContext>
     </div>
   );
 }
 
 function Bar({ id, height }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef: setDragRef,
-    transform,
-    transition,
-  } = useDraggable({ id });
-  const { setNodeRef: setDropRef, isOver } = useDroppable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
 
   const style = {
     height: `${height}px`,
     width: "20px",
     margin: "0 4px",
-    backgroundColor: isOver ? "#00ff99" : "#00bfff",
+    backgroundColor: "#00ff99",
     transform: CSS.Transform.toString(transform),
     transition,
     borderRadius: "4px",
@@ -103,15 +110,13 @@ function Bar({ id, height }) {
 
   return (
     <div
-      ref={(node) => {
-        setDragRef(node);
-        setDropRef(node);
-      }}
+      ref={setNodeRef}
       {...attributes}
       {...listeners}
       className={styles.BarContainer}
+      key={id}
     >
-      <div style={style} />
+      <div style={style} key={id} />
     </div>
   );
 }
