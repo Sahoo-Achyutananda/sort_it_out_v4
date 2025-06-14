@@ -5,7 +5,7 @@ function merge(arr, l, mid, r, history) {
   let i = 0,
     j = 0,
     k = l;
-
+  // Hello
   while (i < array_1.length && j < array_2.length) {
     const compLeft = array_1[i];
     const compRight = array_2[j];
