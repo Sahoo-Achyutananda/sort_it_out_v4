@@ -33,4 +33,20 @@ function generateArrayforRace(length) {
   return arr;
 }
 
-export { getRandomHeight, randomDelay, generateArray, generateArrayforRace };
+function generateArrayforPlay(length) {
+  const arr = Array.from({ length }, (_, index) => ({
+    value: Math.floor(Math.random() * MAX_HEIGHT_RACE_MODE) + 1,
+    // id: `A${index}`,
+    id: index,
+  }));
+
+  return arr;
+}
+
+export {
+  getRandomHeight,
+  randomDelay,
+  generateArray,
+  generateArrayforRace,
+  generateArrayforPlay,
+};

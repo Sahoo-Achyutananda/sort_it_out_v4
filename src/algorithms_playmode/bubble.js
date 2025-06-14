@@ -7,8 +7,8 @@ function bubbleSort(arr) {
 
   for (let i = 0; i < len; i++) {
     for (let j = 0; j < len - i - 1; j++) {
-      const num1 = array[j];
-      const num2 = array[j + 1];
+      const num1 = array[j].value;
+      const num2 = array[j + 1].value;
       // comparisons++;
 
       if (num1 > num2) {
@@ -18,9 +18,7 @@ function bubbleSort(arr) {
           ...history,
           {
             arrayState: [...array],
-            hint: `Swap arr[${j}](${num1}) and arr[${
-              j + 1
-            }](${num2})`,
+            hint: `Swap arr[${j}](${num1}) and arr[${j + 1}](${num2})`,
           },
         ];
       }

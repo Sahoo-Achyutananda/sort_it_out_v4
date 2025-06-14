@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import styles from "./PlayMode.module.css";
 import { usePlayModeContext } from "../../contexts/PlayModeContext";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import {
   DndContext,
@@ -25,6 +25,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 function PlayMode() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [correctCount, setCorrectCount] = useState(0);
   const { dispatch, state } = usePlayModeContext();
   const ArrayContainerRef = useRef();
 
@@ -46,13 +47,44 @@ function PlayMode() {
 
   function handleDragEnd(event) {
     const { active, over } = event;
-    console.log(active, over);
     if (!over || active.id === over.id) return;
 
-    const oldIndex = parseInt(active.id);
-    const newIndex = parseInt(over.id);
+    const oldIndex = state.array.findIndex((item) => item.id === active.id);
+    const newIndex = state.array.findIndex((item) => item.id === over.id);
 
     const newArray = arrayMove(state.array, oldIndex, newIndex);
+
+    // Checking whether the next step is correct -
+    const nextStateArray = state.history[state.currentStep + 1].arrayState;
+    console.log(nextStateArray, newArray);
+    if (newArray[newIndex].value === nextStateArray[newIndex].value) {
+      // alert("Correct");
+
+      const affectedIds = [state.array[oldIndex].id, state.array[newIndex].id];
+
+      dispatch({ type: "SET_RECENT", payload: affectedIds });
+      dispatch({ type: "INCR_STEP" });
+      // state.currentStep++;
+    } else {
+      console.log(
+        newArray[newIndex].value === nextStateArray[newIndex].value,
+        newArray[newIndex].value,
+        nextStateArray[newIndex].value
+      );
+      // alert("wrong");
+      return;
+    }
+
+    // Checking How many are correctly sorted -
+    const targetArray = state.history[state.history.length - 1].arrayState;
+    let newCorrectCount = 0;
+
+    for (let i = 0; i < newArray.length; i++) {
+      if (newArray[i].value === targetArray[i].value) {
+        newCorrectCount++;
+      }
+    }
+    setCorrectCount(newCorrectCount);
     dispatch({ type: "SET_ARRAY", payload: newArray });
   }
 
@@ -79,29 +111,34 @@ function PlayMode() {
         onDragEnd={handleDragEnd}
       >
         <SortableContext
-          items={state.array.map((_, index) => index.toString())}
+          items={state.array.map((item) => item.id)}
           strategy={horizontalListSortingStrategy}
         >
           <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
-            {state.array.map((value, index) => (
-              <Bar key={index} id={index.toString()} height={value} />
+            {state.array.map((item) => (
+              <Bar key={item.id} id={item.id} height={item.value} />
             ))}
           </div>
         </SortableContext>
       </DndContext>
+
+      <div>Correctly Placed : {correctCount}</div>
     </div>
   );
 }
 
 function Bar({ id, height }) {
+  const { state } = usePlayModeContext();
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
   const style = {
     height: `${height}px`,
-    width: "20px",
+    width: "30px",
     margin: "0 4px",
-    backgroundColor: "#00ff99",
+    backgroundColor: state.recentIndicesAffected.includes(id)
+      ? "rebeccapurple"
+      : "#00ff99",
     transform: CSS.Transform.toString(transform),
     transition,
     borderRadius: "4px",
@@ -116,7 +153,9 @@ function Bar({ id, height }) {
       className={styles.BarContainer}
       key={id}
     >
-      <div style={style} key={id} />
+      <div style={style} key={id}>
+        {height}
+      </div>
     </div>
   );
 }

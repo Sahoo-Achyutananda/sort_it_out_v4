@@ -5,6 +5,7 @@ import insertionSort from "../algorithms_playmode/insertion.js";
 import selectionSort from "../algorithms_playmode/selection.js";
 
 const algoMapping = {
+  random: () => true,
   bubble: bubbleSort,
   insertion: insertionSort,
   selection: selectionSort,
@@ -12,9 +13,11 @@ const algoMapping = {
 
 const initialState = {
   algo: "random",
-  array: utils.generateArray(20),
+  array: utils.generateArrayforPlay(20),
   history: [],
+  recentIndicesAffected: [],
   algoFun: null,
+  currentStep: 0,
 };
 
 function reducer(state, action) {
@@ -24,11 +27,23 @@ function reducer(state, action) {
         ...state,
         algo: action.payload,
         history: algoMapping[action.payload](state.array),
+        algoFun: algoMapping[action.payload],
+        currentStep: 0,
       };
     case "SET_ARRAY":
       return {
         ...state,
         array: action.payload,
+      };
+    case "SET_RECENT":
+      return {
+        ...state,
+        recentIndicesAffected: action.payload,
+      };
+    case "INCR_STEP":
+      return {
+        ...state,
+        currentStep: state.currentStep + 1,
       };
     default:
       return state;
