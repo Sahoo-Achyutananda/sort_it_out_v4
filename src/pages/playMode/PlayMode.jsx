@@ -47,31 +47,40 @@ function PlayMode() {
 
   function handleDragEnd(event) {
     const { active, over } = event;
-    if (!over || active.id === over.id) return;
+    /*
+    In dnd-kit, active and over refer to the draggable and droppable elements involved in a drag and drop operation. 
+    active represents the element being dragged, while over represents the element the dragged element is currently 
+    hovering over.
+    */
+
+    if (!over || active.id === over.id) return; // if there is no droppable element then return or if draggable elem = droppable elem - return
 
     const oldIndex = state.array.findIndex((item) => item.id === active.id);
+    console.log("prev index : ", oldIndex);
+    // gets the index of the draggable object
     const newIndex = state.array.findIndex((item) => item.id === over.id);
+    console.log("new index : ", newIndex);
+    // gets the index of the droppable object
 
     const newArray = arrayMove(state.array, oldIndex, newIndex);
+    // change the array
 
     // Checking whether the next step is correct -
+    console.log("current step", state.currentStep);
     const nextStateArray = state.history[state.currentStep + 1].arrayState;
-    console.log(nextStateArray, newArray);
     if (newArray[newIndex].value === nextStateArray[newIndex].value) {
-      // alert("Correct");
-
       const affectedIds = [state.array[oldIndex].id, state.array[newIndex].id];
 
       dispatch({ type: "SET_RECENT", payload: affectedIds });
       dispatch({ type: "INCR_STEP" });
-      // state.currentStep++;
     } else {
       console.log(
         newArray[newIndex].value === nextStateArray[newIndex].value,
+        "array value",
         newArray[newIndex].value,
+        "neext Array value",
         nextStateArray[newIndex].value
       );
-      // alert("wrong");
       return;
     }
 
@@ -155,6 +164,7 @@ function Bar({ id, height }) {
     >
       <div style={style} key={id}>
         {height}
+        <br />({id})
       </div>
     </div>
   );

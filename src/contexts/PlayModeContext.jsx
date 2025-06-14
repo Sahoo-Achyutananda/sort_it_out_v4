@@ -17,7 +17,7 @@ const initialState = {
   history: [],
   recentIndicesAffected: [],
   algoFun: null,
-  currentStep: 0,
+  currentStep: -1,
 };
 
 function reducer(state, action) {
