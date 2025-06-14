@@ -3,12 +3,14 @@ import * as utils from "../utils/utils.js";
 import bubbleSort from "../algorithms_playmode/bubble.js";
 import insertionSort from "../algorithms_playmode/insertion.js";
 import selectionSort from "../algorithms_playmode/selection.js";
+import performMergeSort from "../algorithms_playmode/merge.js";
 
 const algoMapping = {
   random: () => true,
   bubble: bubbleSort,
   insertion: insertionSort,
   selection: selectionSort,
+  merge: performMergeSort,
 };
 
 const initialState = {
@@ -17,7 +19,7 @@ const initialState = {
   history: [],
   recentIndicesAffected: [],
   algoFun: null,
-  currentStep: -1,
+  currentStep: 0,
 };
 
 function reducer(state, action) {

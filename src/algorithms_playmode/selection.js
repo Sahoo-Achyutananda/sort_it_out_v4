@@ -11,19 +11,13 @@ function selectionSort(arr) {
     for (let j = i + 1; j < n; j++) {
       // comparisons++;
 
-      if (array[min_index] > array[j]) {
+      if (array[min_index].value > array[j].value) {
         min_index = j;
-
-        // history.push({
-        //   arrayState: [...array],
-        //   hint: `Updated minimum: arr[${min_index}] = ${array[min_index]} is now the smallest in the unsorted subarray.`,
-        // });
       }
     }
 
     if (min_index !== i) {
       [array[i], array[min_index]] = [array[min_index], array[i]];
-      // swaps++;
 
       history.push({
         arrayState: [...array],

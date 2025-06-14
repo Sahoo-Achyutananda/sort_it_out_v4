@@ -63,13 +63,10 @@ function PlayMode() {
     // gets the index of the droppable object
 
     const newArray = arrayMove(state.array, oldIndex, newIndex);
-    // change the array
+    const nextStateArray = state.history[state.currentStep].arrayState;
 
-    // Checking whether the next step is correct -
-    console.log("current step", state.currentStep);
-    const nextStateArray = state.history[state.currentStep + 1].arrayState;
     if (newArray[newIndex].value === nextStateArray[newIndex].value) {
-      const affectedIds = [state.array[oldIndex].id, state.array[newIndex].id];
+      const affectedIds = [oldIndex, newIndex];
 
       dispatch({ type: "SET_RECENT", payload: affectedIds });
       dispatch({ type: "INCR_STEP" });
@@ -78,7 +75,7 @@ function PlayMode() {
         newArray[newIndex].value === nextStateArray[newIndex].value,
         "array value",
         newArray[newIndex].value,
-        "neext Array value",
+        "next Array value",
         nextStateArray[newIndex].value
       );
       return;
