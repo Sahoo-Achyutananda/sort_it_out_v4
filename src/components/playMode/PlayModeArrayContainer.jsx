@@ -1,7 +1,7 @@
-import { useSearchParams } from "react-router-dom";
-import styles from "./PlayMode.module.css";
+// import { useSearchParams } from "react-router-dom";
+import styles from "./PlayModeArrayContainer.module.css";
 import { usePlayModeContext } from "../../contexts/PlayModeContext";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import {
   DndContext,
@@ -23,11 +23,11 @@ import {
 
 import { CSS } from "@dnd-kit/utilities";
 
-function PlayMode() {
-  const [searchParams, setSearchParams] = useSearchParams();
+function PlayModeArrayContainer() {
+  //   const [searchParams, setSearchParams] = useSearchParams();
   const [correctCount, setCorrectCount] = useState(0);
   const { dispatch, state } = usePlayModeContext();
-  const ArrayContainerRef = useRef();
+  const ArrayContainerRef = useRef(null);
 
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor, {
@@ -39,11 +39,11 @@ function PlayMode() {
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
-  function handleAlgoSelect(e) {
-    const algo = e.target.value;
-    setSearchParams({ algo });
-    dispatch({ type: "SET_ALGO", payload: algo });
-  }
+  //   function handleAlgoSelect(e) {
+  //     const algo = e.target.value;
+  //     setSearchParams({ algo });
+  //     dispatch({ type: "SET_ALGO", payload: algo });
+  //   }
 
   function handleDragEnd(event) {
     const { active, over } = event;
@@ -100,7 +100,7 @@ function PlayMode() {
 
   return (
     <div className={styles.PlayModeContainer}>
-      <select
+      {/* <select
         className={styles.AlgoSelect}
         value={state.algo}
         onChange={handleAlgoSelect}
@@ -111,9 +111,9 @@ function PlayMode() {
         <option value="insertion">Insertion Sort</option>
         <option value="quick">Quick Sort</option>
         <option value="merge">Merge Sort</option>
-      </select>
+      </select> */}
 
-      <div className={styles.AlgoName}>{state.algo}</div>
+      {/* <div className={styles.AlgoName}>{state.algo}</div> */}
 
       <DndContext
         sensors={sensors}
@@ -126,7 +126,12 @@ function PlayMode() {
         >
           <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
             {state.array.map((item) => (
-              <Bar key={item.id} id={item.id} height={item.value} />
+              <Bar
+                arrayContainerRef={ArrayContainerRef}
+                key={item.id}
+                id={item.id}
+                height={item.value}
+              />
             ))}
           </div>
         </SortableContext>
@@ -137,15 +142,31 @@ function PlayMode() {
   );
 }
 
-function Bar({ id, height }) {
+function Bar({ arrayContainerRef, id, height }) {
+  //   const { state } = usePlayModeContext();
   const { state } = usePlayModeContext();
+  const [dimensions, setDimensions] = useState({
+    height: "50px",
+    width: "50px",
+  });
+  useEffect(() => {
+    if (arrayContainerRef.current) {
+      const containerWidth = arrayContainerRef.current.offsetWidth;
+      const boxWidth = containerWidth / state.array.length - 2;
+      setDimensions({
+        height: height,
+        width: `${boxWidth}px`,
+      });
+    }
+  }, [arrayContainerRef, state.array.length, height, id]);
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
   const style = {
     height: `${height}px`,
-    width: "30px",
-    margin: "0 4px",
+    // margin: "0 4px",
+    width: dimensions.width,
     backgroundColor: state.recentIndicesAffected.includes(id)
       ? "rebeccapurple"
       : "#00ff99",
@@ -163,7 +184,7 @@ function Bar({ id, height }) {
       className={styles.BarContainer}
       key={id}
     >
-      <div style={style} key={id}>
+      <div style={style} key={id} className={styles.Bar}>
         {height}
         <br />({id})
       </div>
@@ -171,4 +192,4 @@ function Bar({ id, height }) {
   );
 }
 
-export default PlayMode;
+export default PlayModeArrayContainer;

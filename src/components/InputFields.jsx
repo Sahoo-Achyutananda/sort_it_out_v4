@@ -1,5 +1,6 @@
 import Slider from "@mui/material/Slider";
 import styles from "./InputFields.module.css";
+import { NavLink } from "react-router-dom";
 
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import SpeedIcon from "@mui/icons-material/Speed";
@@ -23,7 +24,15 @@ const CustomToggleButton = styled(ToggleButton)(() => ({
   },
 }));
 
-function InputFields({ dispatch, state, initialState }) {
+function InputFields({
+  dispatch,
+  state,
+  initialState,
+  json,
+  // handlePlayButton,
+}) {
+  // const location = useLocation();
+  // const isPlayMode = location.pathname.includes("/play");
   return (
     <div className={styles.Inputs}>
       <Tooltip
@@ -112,6 +121,25 @@ function InputFields({ dispatch, state, initialState }) {
                 </CustomToggleButton>
               </Tooltip>
             </ToggleButtonGroup>
+          </div>
+          {/* <button onClick={() => handlePlayButton()}>Play 🛝</button> */}
+          <div className={styles.modeSwitcher}>
+            <NavLink
+              to={json.link}
+              className={({ isActive }) =>
+                `${styles.tab} ${isActive ? styles.activeTab : ""}`
+              }
+            >
+              Normal Mode
+            </NavLink>
+            <NavLink
+              to={`${json.link}/play`}
+              className={({ isActive }) =>
+                `${styles.tab} ${isActive ? styles.activeTab : ""}`
+              }
+            >
+              Play Mode
+            </NavLink>
           </div>
         </div>
         {/* </div> */}

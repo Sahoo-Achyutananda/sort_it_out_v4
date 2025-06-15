@@ -164,3 +164,30 @@
     font-size: 0.8rem;
   }
 }
+
+/* InputFields.module.css */
+.modeSwitcher {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.tab {
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: white;
+  background: rebeccapurple;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background: rgb(51, 18, 84);
+}
+
+.activeTab {
+  background: rebeccapurple;
+  color: white;
+  font-weight: bold;
+}

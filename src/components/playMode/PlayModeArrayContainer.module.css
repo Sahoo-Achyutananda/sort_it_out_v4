@@ -1,0 +1,47 @@
+.PlayModeContainer {
+  height: 400px;
+  width: 90vw;
+  background-color: rgba(109, 19, 193, 0.696);
+}
+
+.Bar {
+  margin-inline: 1px;
+  /* background-color: royalblue; */
+}
+
+.BarContainer {
+  height: 100%;
+  width: auto;
+}
+
+.ArrayContainer,
+.ArrayContainerBoxView {
+  background-color: rgba(236, 236, 236, 0.01);
+  height: 400px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  border-radius: 5px;
+}
+
+.ArrayContainerBoxView {
+  align-items: center;
+}
+
+.Bar {
+  margin-inline: 1px;
+  background: linear-gradient(rgb(103, 3, 204));
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
+  /* transition: all 0.1s ease-in-out; */
+}
+
+.Bar:hover {
+  transform: translateY(10px);
+  background: linear-gradient(rgb(77, 1, 152));
+  /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
+  /* animation: float 1s ease-in-out infinite; */
+}

@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Loader from "./Loader";
 
 function RouteChangeWrapper({ children }) {
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const path = location.pathname;
@@ -22,20 +22,20 @@ function RouteChangeWrapper({ children }) {
     document.title = titleMap[path] || "Sort It Out ";
   }, [location]);
 
-  useEffect(() => {
-    setLoading(true);
+  // useEffect(() => {
+  //   setLoading(true);
 
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+  //   return () => clearTimeout(timer);
+  // }, [location.pathname]);
 
   return (
     <div>
-      {loading && <Loader />}
-      {!loading && children}
+      {/* {loading && <Loader />} */}
+      {children}
     </div>
   );
 }

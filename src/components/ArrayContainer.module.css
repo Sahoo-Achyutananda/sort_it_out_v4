@@ -289,7 +289,6 @@
   margin-inline: 1px;
 }
 
-/* Add these to your ArrayContainer.module.css */
 .bar {
   transition: height 0.3s ease-out, background-color 0.2s ease,
     transform 0.2s ease;
@@ -317,19 +316,6 @@
 }
 
 @media (max-width: 850px) {
-  /* .stats {
-  }
-
-  .compsDiv > span,
-  .swapsDiv > span {
-    font: 500 12px "Poppins", sans-serif;
-  }
-
-  .compsDiv > div,
-  .swapsDiv > div {
-    font: 500 12px "Poppins", sans-serif;
-  } */
-
   .box {
     height: 50px;
     width: 50px;
