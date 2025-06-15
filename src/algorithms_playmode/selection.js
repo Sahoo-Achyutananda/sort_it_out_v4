@@ -16,12 +16,15 @@ function selectionSort(arr) {
       }
     }
 
-    if (min_index !== i) {
-      [array[i], array[min_index]] = [array[min_index], array[i]];
+    if (array[i].id !== array[min_index].id) {
+      const fromVal = array[i].value;
+      const toVal = array[min_index].value;
 
+      [array[i], array[min_index]] = [array[min_index], array[i]];
+      console.log(() => [...array]);
       history.push({
         arrayState: [...array],
-        hint: `Swapped arr[${i}] = ${array[min_index]} with arr[${min_index}] = ${array[i]} to place the smallest element at position ${i}.`,
+        hint: `Swapped arr[${i}] = ${fromVal} with arr[${min_index}] = ${toVal} to place the smallest element at position ${i}.`,
       });
     }
   }

@@ -55,14 +55,24 @@ function PlayMode() {
 
     if (!over || active.id === over.id) return; // if there is no droppable element then return or if draggable elem = droppable elem - return
 
+    // if (state.algo === "selection") {
+    //   handleSelectionSortStep(active, over);
+    // } else {
     const oldIndex = state.array.findIndex((item) => item.id === active.id);
-    console.log("prev index : ", oldIndex);
     // gets the index of the draggable object
     const newIndex = state.array.findIndex((item) => item.id === over.id);
-    console.log("new index : ", newIndex);
     // gets the index of the droppable object
 
-    const newArray = arrayMove(state.array, oldIndex, newIndex);
+    let newArray;
+    if (state.algo === "selection") {
+      newArray = [...state.array];
+      [newArray[oldIndex], newArray[newIndex]] = [
+        newArray[newIndex],
+        newArray[oldIndex],
+      ];
+    } else {
+      newArray = arrayMove(state.array, oldIndex, newIndex);
+    }
     const nextStateArray = state.history[state.currentStep].arrayState;
 
     if (newArray[newIndex].value === nextStateArray[newIndex].value) {
@@ -71,13 +81,6 @@ function PlayMode() {
       dispatch({ type: "SET_RECENT", payload: affectedIds });
       dispatch({ type: "INCR_STEP" });
     } else {
-      console.log(
-        newArray[newIndex].value === nextStateArray[newIndex].value,
-        "array value",
-        newArray[newIndex].value,
-        "next Array value",
-        nextStateArray[newIndex].value
-      );
       return;
     }
 
@@ -86,12 +89,13 @@ function PlayMode() {
     let newCorrectCount = 0;
 
     for (let i = 0; i < newArray.length; i++) {
-      if (newArray[i].value === targetArray[i].value) {
+      if (newArray[i].id === targetArray[i].id) {
         newCorrectCount++;
       }
     }
     setCorrectCount(newCorrectCount);
     dispatch({ type: "SET_ARRAY", payload: newArray });
+    // }
   }
 
   return (

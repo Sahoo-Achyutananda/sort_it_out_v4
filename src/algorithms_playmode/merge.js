@@ -74,7 +74,6 @@ function mergeSort(arr, left, right, history) {
 function performMergeSort(arr) {
   const array = [...arr];
   const history = [];
-  // const stats = { swaps: 0, comparisons: 0 };
 
   mergeSort(array, 0, array.length - 1, history);
 

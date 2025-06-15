@@ -15,7 +15,7 @@ const algoMapping = {
 
 const initialState = {
   algo: "random",
-  array: utils.generateArrayforPlay(20),
+  array: utils.generateArrayforPlay(10),
   history: [],
   recentIndicesAffected: [],
   algoFun: null,
