@@ -24,7 +24,6 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 function PlayModeArrayContainer() {
-  //   const [searchParams, setSearchParams] = useSearchParams();
   const [correctCount, setCorrectCount] = useState(0);
   const { dispatch, state } = usePlayModeContext();
   const ArrayContainerRef = useRef(null);
@@ -39,12 +38,6 @@ function PlayModeArrayContainer() {
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
-  //   function handleAlgoSelect(e) {
-  //     const algo = e.target.value;
-  //     setSearchParams({ algo });
-  //     dispatch({ type: "SET_ALGO", payload: algo });
-  //   }
-
   function handleDragEnd(event) {
     const { active, over } = event;
     /*
@@ -54,10 +47,6 @@ function PlayModeArrayContainer() {
     */
 
     if (!over || active.id === over.id) return; // if there is no droppable element then return or if draggable elem = droppable elem - return
-
-    // if (state.algo === "selection") {
-    //   handleSelectionSortStep(active, over);
-    // } else {
     const oldIndex = state.array.findIndex((item) => item.id === active.id);
     // gets the index of the draggable object
     const newIndex = state.array.findIndex((item) => item.id === over.id);
@@ -143,7 +132,6 @@ function PlayModeArrayContainer() {
 }
 
 function Bar({ arrayContainerRef, id, height }) {
-  //   const { state } = usePlayModeContext();
   const { state } = usePlayModeContext();
   const [dimensions, setDimensions] = useState({
     height: "50px",
@@ -165,7 +153,6 @@ function Bar({ arrayContainerRef, id, height }) {
 
   const style = {
     height: `${height}px`,
-    // margin: "0 4px",
     width: dimensions.width,
     backgroundColor: state.recentIndicesAffected.includes(id)
       ? "rebeccapurple"
@@ -176,6 +163,11 @@ function Bar({ arrayContainerRef, id, height }) {
     cursor: "grab",
   };
 
+  const indexClasses = [
+    styles.index,
+    state.recentIndicesAffected.includes(id) ? styles.highlightIndex : "",
+  ].join(" ");
+
   return (
     <div
       ref={setNodeRef}
@@ -184,6 +176,14 @@ function Bar({ arrayContainerRef, id, height }) {
       className={styles.BarContainer}
       key={id}
     >
+      <div
+        className={indexClasses}
+        style={{
+          width: dimensions.width,
+        }}
+      >
+        {id}
+      </div>
       <div style={style} key={id} className={styles.Bar}>
         {height}
         <br />({id})

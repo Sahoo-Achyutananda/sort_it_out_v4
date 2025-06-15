@@ -10,7 +10,7 @@ import FastRewindIcon from "@mui/icons-material/FastRewind";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Slider from "@mui/material/Slider";
-import Timer from "./Timer.jsx";
+
 import { forwardRef } from "react";
 
 function ArrayContainer({ state, dispatch, algo }) {
@@ -190,7 +190,6 @@ function ControlButtons({ state, dispatch, algo }) {
         </Tooltip>
         <Tooltip title="Step Back" interactive arrow>
           <button
-            // disabled={!state.isSorting}
             className={styles.buttonRewind}
             onClick={() => dispatch({ type: "stepBackward" })}
           >
@@ -199,7 +198,6 @@ function ControlButtons({ state, dispatch, algo }) {
         </Tooltip>
         <Tooltip title="Step Ahead" interactive arrow>
           <button
-            // disabled={!state.isSorting}
             className={styles.buttonForward}
             onClick={() => dispatch({ type: "stepForward" })}
           >

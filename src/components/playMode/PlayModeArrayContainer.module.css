@@ -1,7 +1,7 @@
 .PlayModeContainer {
   height: 400px;
   width: 90vw;
-  background-color: rgba(109, 19, 193, 0.696);
+  background-color: rgba(236, 236, 236, 0.01);
 }
 
 .Bar {
@@ -36,12 +36,37 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 
-  /* transition: all 0.1s ease-in-out; */
+  transition: height 0.1s ease-in-out;
 }
 
 .Bar:hover {
-  transform: translateY(10px);
-  background: linear-gradient(rgb(77, 1, 152));
+  /* transform: translateY(10px); */
+  background: linear-gradient(rgb(84, 1, 168));
   /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
   /* animation: float 1s ease-in-out infinite; */
+}
+
+.index {
+  box-sizing: border-box;
+  background-color: khaki;
+  color: black;
+  height: auto;
+  margin-inline: 1px;
+  font: 500 0.7rem "Poppins", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlightIndex {
+  background: #4ef578;
+  color: white;
+  margin-inline: 1px;
+}
+
+@media (max-width: 800px) {
+  .index {
+    font: 300 0.4rem "Poppins", sans-serif;
+  }
 }

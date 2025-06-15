@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import SpeedIcon from "@mui/icons-material/Speed";
-// import { flushSync } from "react-dom";
 
 import { styled } from "@mui/material/styles";
 
@@ -12,8 +11,13 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-
 import Tooltip from "@mui/material/Tooltip";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import StopIcon from "@mui/icons-material/Stop";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import PauseIcon from "@mui/icons-material/Pause";
+import Timer from "./Timer.jsx";
+import { usePlayModeContext } from "../contexts/PlayModeContext";
 
 const CustomToggleButton = styled(ToggleButton)(() => ({
   color: "white",
@@ -29,10 +33,10 @@ function InputFields({
   state,
   initialState,
   json,
-  // handlePlayButton,
+  isPlayMode,
+  algoPlay,
 }) {
-  // const location = useLocation();
-  // const isPlayMode = location.pathname.includes("/play");
+  const { state: statePlay, dispatch: dispatchPlay } = usePlayModeContext();
   return (
     <div className={styles.Inputs}>
       <Tooltip
@@ -60,69 +64,80 @@ function InputFields({
         </div>
       </Tooltip>
       <div className={styles.userInputs}>
-        <Tooltip title="Set Speed 🏃‍♀️" followCursor interactive>
-          <div className={`${styles.sliderDiv} ${styles.speedDiv}`}>
-            <SpeedIcon fontSize="small" sx={{ color: "white" }} />
-            <Slider
-              aria-label="Speed"
-              defaultValue={initialState.speed}
-              valueLabelDisplay="auto"
-              step={0.25}
-              marks
-              min={0.25}
-              max={10}
-              value={state.speed}
-              onChange={(e) =>
-                dispatch({ type: "speedChange", payload: e.target.value })
-              }
-              className={styles.speedSlider}
-            />
-          </div>
-        </Tooltip>
+        {!isPlayMode ? (
+          <Tooltip title="Set Speed 🏃‍♀️" followCursor interactive>
+            <div className={`${styles.sliderDiv} ${styles.speedDiv}`}>
+              <SpeedIcon fontSize="small" sx={{ color: "white" }} />
+              <Slider
+                aria-label="Speed"
+                defaultValue={initialState.speed}
+                valueLabelDisplay="auto"
+                step={0.25}
+                marks
+                min={0.25}
+                max={10}
+                value={state.speed}
+                onChange={(e) =>
+                  dispatch({ type: "speedChange", payload: e.target.value })
+                }
+                className={styles.speedSlider}
+              />
+            </div>
+          </Tooltip>
+        ) : (
+          ""
+        )}
         <Tooltip title="Set Array Size 📦" interactive followCursor>
           <div className={`${styles.sliderDiv} ${styles.valueDiv}`}>
             <DataArrayIcon fontSize="small" sx={{ color: "white" }} />
             <Slider
-              aria-label="Speed"
-              defaultValue={20}
+              aria-label="Size"
+              defaultValue={!isPlayMode ? 20 : 10}
               valueLabelDisplay="auto"
               step={1}
               marks
               min={1}
-              max={50}
-              value={state.value}
+              max={!isPlayMode ? 50 : 20}
+              value={!isPlayMode ? state.value : statePlay.value}
               onChange={(e) =>
-                dispatch({ type: "valueChange", payload: e.target.value })
+                !isPlayMode
+                  ? dispatch({ type: "valueChange", payload: e.target.value })
+                  : dispatchPlay({ type: "SET_SIZE", payload: e.target.value })
               }
               className={styles.valueSlider}
             />
           </div>
         </Tooltip>
+        {isPlayMode ? <PlayModeControls algoPlay={algoPlay} /> : ""}
+
         <div className={styles.utilitiesDiv}>
-          <div className={styles.utilities}>
-            <ToggleButtonGroup
-              color="primary"
-              size="small"
-              value={state.toggle}
-              exclusive
-              onChange={(e, newValue) => {
-                if (newValue)
-                  dispatch({ type: "toggleChange", payload: newValue });
-              }}
-            >
-              <Tooltip title="Bar View">
-                <CustomToggleButton value="bar">
-                  <BarChartIcon fontSize="small" />
-                </CustomToggleButton>
-              </Tooltip>
-              <Tooltip title="Box View">
-                <CustomToggleButton value="box">
-                  <WidgetsIcon fontSize="small" />
-                </CustomToggleButton>
-              </Tooltip>
-            </ToggleButtonGroup>
-          </div>
-          {/* <button onClick={() => handlePlayButton()}>Play 🛝</button> */}
+          {!isPlayMode ? (
+            <div className={styles.utilities}>
+              <ToggleButtonGroup
+                color="primary"
+                size="small"
+                value={state.toggle}
+                exclusive
+                onChange={(e, newValue) => {
+                  if (newValue)
+                    dispatch({ type: "toggleChange", payload: newValue });
+                }}
+              >
+                <Tooltip title="Bar View">
+                  <CustomToggleButton value="bar">
+                    <BarChartIcon fontSize="small" />
+                  </CustomToggleButton>
+                </Tooltip>
+                <Tooltip title="Box View">
+                  <CustomToggleButton value="box">
+                    <WidgetsIcon fontSize="small" />
+                  </CustomToggleButton>
+                </Tooltip>
+              </ToggleButtonGroup>
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.modeSwitcher}>
             <NavLink
               to={json.link}
@@ -145,6 +160,51 @@ function InputFields({
         {/* </div> */}
       </div>
     </div>
+  );
+}
+
+function PlayModeControls({ algoPlay }) {
+  const { state, dispatch } = usePlayModeContext();
+
+  function handleStart() {
+    dispatch({ type: "SET_ALGO", payload: algoPlay });
+    return;
+  }
+  return (
+    <>
+      <div className={styles.buttonDiv}>
+        <Tooltip title={!state.isPlaying ? "Play" : "Pause"} interactive arrow>
+          <button
+            className={styles.buttonStart}
+            disabled={state.isSorting}
+            onClick={handleStart}
+          >
+            <PlayArrowIcon fontSize="small" />
+          </button>
+        </Tooltip>
+
+        <Tooltip
+          title={state.isSorting ? "Stop Sorting 🚫" : "Generate NEW Array"}
+        >
+          <button
+            className={styles.buttonReset}
+            onClick={() =>
+              state.isSorting
+                ? dispatch({ type: "RESET" })
+                : dispatch({ type: "REGENERATE" })
+            }
+          >
+            {state.isSorting ? (
+              <StopIcon fontSize="small" />
+            ) : (
+              <RestartAltIcon fontSize="small" />
+            )}
+          </button>
+        </Tooltip>
+
+        <Timer getState={() => state} dispatch={dispatch} />
+      </div>
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ function Timer({ getState, dispatch }) {
   useEffect(() => {
     const id = setInterval(() => {
       if (getState().isSorting) {
-        dispatch({ type: "tick" });
+        dispatch({ type: "TICK" });
       }
     }, 1000);
 

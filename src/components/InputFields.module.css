@@ -191,3 +191,42 @@
   color: white;
   font-weight: bold;
 }
+
+.buttonDiv {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
+.buttonStart,
+.buttonReset {
+  border: none;
+  width: auto;
+  height: auto;
+  padding: 7px;
+  padding-inline: 10px;
+  border-radius: 4px;
+}
+
+.buttonStart {
+  background-color: #4caf50;
+  color: white;
+}
+
+.buttonStart:hover {
+  background-color: #3a763c;
+}
+
+.buttonReset {
+  background-color: crimson;
+  color: white;
+}
+
+.buttonReset:hover {
+  background-color: rgb(144, 3, 32);
+}
+
+.buttonStart:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

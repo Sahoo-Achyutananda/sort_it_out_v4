@@ -1,25 +1,28 @@
-import { Children, createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import * as utils from "../utils/utils.js";
-import bubbleSort from "../algorithms_playmode/bubble.js";
-import insertionSort from "../algorithms_playmode/insertion.js";
-import selectionSort from "../algorithms_playmode/selection.js";
-import performMergeSort from "../algorithms_playmode/merge.js";
+// import bubbleSort from "../algorithms_playmode/bubble.js";
+// import insertionSort from "../algorithms_playmode/insertion.js";
+// import selectionSort from "../algorithms_playmode/selection.js";
+// import performMergeSort from "../algorithms_playmode/merge.js";
 
-const algoMapping = {
-  random: () => true,
-  bubble: bubbleSort,
-  insertion: insertionSort,
-  selection: selectionSort,
-  merge: performMergeSort,
-};
+// const algoMapping = {
+//   random: () => true,
+//   bubble: bubbleSort,
+//   insertion: insertionSort,
+//   selection: selectionSort,
+//   merge: performMergeSort,
+// };
 
 const initialState = {
   algo: "random",
+  value: 10,
+  time: 0,
   array: utils.generateArrayforPlay(10),
   history: [],
   recentIndicesAffected: [],
   algoFun: null,
   currentStep: 0,
+  isSorting: false,
 };
 
 function reducer(state, action) {
@@ -28,14 +31,35 @@ function reducer(state, action) {
       return {
         ...state,
         algo: action.payload,
-        history: algoMapping[action.payload](state.array),
-        algoFun: algoMapping[action.payload],
+        history: action.payload(state.array),
+        algoFun: action.payload,
+        isSorting: true,
         currentStep: 0,
+      };
+    case "RESET":
+      return {
+        ...state,
+        history: [],
+        isSorting: false,
+        currentStep: 0,
+        time: 0,
+        recentIndicesAffected: [],
+      };
+    case "REGENERATE":
+      return {
+        ...state,
+        array: utils.generateArrayforPlay(state.value),
       };
     case "SET_ARRAY":
       return {
         ...state,
         array: action.payload,
+      };
+    case "SET_SIZE":
+      return {
+        ...state,
+        value: action.payload,
+        array: utils.generateArrayforPlay(action.payload),
       };
     case "SET_RECENT":
       return {
@@ -47,6 +71,15 @@ function reducer(state, action) {
         ...state,
         currentStep: state.currentStep + 1,
       };
+    case "TICK":
+      return {
+        ...state,
+        time: state.isSorting ? state.time + 1 : state.time,
+      };
+    // case "ALGO_START":
+    //   return {
+
+    //   }
     default:
       return state;
   }

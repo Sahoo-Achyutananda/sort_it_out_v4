@@ -1,4 +1,6 @@
 const MAX_HEIGHT_RACE_MODE = 270;
+const MIN_HEIGHT_PLAY_MODE = 20;
+const MAX_HEIGHT_PLAY_MODE = 300;
 const MAX_HEIGHT_STANDALONE_MODE = 350;
 
 function getRandomHeight() {
@@ -35,8 +37,8 @@ function generateArrayforRace(length) {
 
 function generateArrayforPlay(length) {
   const arr = Array.from({ length }, (_, index) => ({
-    value: Math.floor(Math.random() * MAX_HEIGHT_RACE_MODE) + 1,
-    // id: `A${index}`,
+    value:
+      Math.floor(Math.random() * MAX_HEIGHT_PLAY_MODE) + MIN_HEIGHT_PLAY_MODE,
     id: index,
   }));
 

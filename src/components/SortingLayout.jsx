@@ -11,17 +11,10 @@ import Feedback from "../pages/homePage/Feedback.jsx";
 import { useLocation } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
-function SortingLayout({ algorithm, json }) {
+function SortingLayout({ algorithm, algorithmPlay, json }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const [play, setPlay] = useState(false);
-  // const navigate = useNavigate();
   const location = useLocation();
   const isPlayMode = location.pathname.includes("/play");
-
-  // function handlePlayButton() {
-  //   setPlay(!play);
-  //   play ? navigate(`${json.link}/play`) : navigate(-1);
-  // }
   const stateRef = useRef(state);
   useEffect(() => {
     stateRef.current = state;
@@ -40,15 +33,13 @@ function SortingLayout({ algorithm, json }) {
             stateRef={stateRef}
             initialState={initialState}
             algo={algorithm}
+            algoPlay={algorithmPlay}
             json={json}
+            isPlayMode={isPlayMode}
           ></InputFields>
         </div>
         {isPlayMode ? (
-          <PlayModeArrayContainer
-            state={state}
-            dispatch={dispatch}
-            algo={algorithm}
-          />
+          <PlayModeArrayContainer algoPlay={algorithmPlay} />
         ) : (
           <ArrayContainer state={state} dispatch={dispatch} algo={algorithm} />
         )}
