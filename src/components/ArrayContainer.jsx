@@ -229,36 +229,36 @@ function Transcript({ state, dispatch }) {
   const itemRefs = useRef([]);
   const parentRef = useRef(null);
   const [toggleAccordian, setToggleAccordian] = useState(true);
-  const [isUserScrolling, setIsUserScrolling] = useState(false);
-  const scrollTimeout = useRef(null);
+  // const [isUserScrolling, setIsUserScrolling] = useState(false);
+  // const scrollTimeout = useRef(null);
 
-  const handleScroll = () => {
-    if (!isUserScrolling) {
-      setIsUserScrolling(true);
-    }
-    if (scrollTimeout.current) {
-      clearTimeout(scrollTimeout.current);
-    }
+  // const handleScroll = () => {
+  //   if (!isUserScrolling) {
+  //     setIsUserScrolling(true);
+  //   }
+  //   if (scrollTimeout.current) {
+  //     clearTimeout(scrollTimeout.current);
+  //   }
 
-    scrollTimeout.current = setTimeout(() => {
-      setIsUserScrolling(false);
-    }, 5000);
-  };
+  //   scrollTimeout.current = setTimeout(() => {
+  //     setIsUserScrolling(false);
+  //   }, 5000);
+  // };
 
-  useEffect(() => {
-    return () => {
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     if (scrollTimeout.current) {
+  //       clearTimeout(scrollTimeout.current);
+  //     }
+  //   };
+  // }, []);
 
   useEffect(() => {
     const activeRef = itemRefs.current[state.currentStep];
     const parent = parentRef.current;
 
     if (activeRef && parent) {
-      if (!isUserScrolling && parentRef.current) {
+      if (parentRef.current) {
         const parentRect = parent.getBoundingClientRect();
         const activeRect = activeRef.getBoundingClientRect();
 
@@ -275,7 +275,7 @@ function Transcript({ state, dispatch }) {
         }
       }
     }
-  }, [state.currentStep, isUserScrolling]);
+  }, [state.currentStep]);
 
   return (
     <div className={styles.Accordian}>
@@ -299,7 +299,7 @@ function Transcript({ state, dispatch }) {
             : styles.Transcript
         } ${toggleAccordian ? styles.show : styles.hide}`}
         ref={parentRef}
-        onScroll={handleScroll}
+        // onScroll={handleScroll}
       >
         {state.history.length ? (
           state.history.map((item, index) => (

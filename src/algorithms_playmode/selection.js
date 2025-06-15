@@ -21,7 +21,7 @@ function selectionSort(arr) {
       const toVal = array[min_index].value;
 
       [array[i], array[min_index]] = [array[min_index], array[i]];
-      console.log(() => [...array]);
+      // console.log(() => [...array]);
       history.push({
         arrayState: [...array],
         hint: `Swapped arr[${i}] = ${fromVal} with arr[${min_index}] = ${toVal} to place the smallest element at position ${i}.`,
