@@ -18,6 +18,7 @@ const initialState = {
   value: 10,
   time: 0,
   array: utils.generateArrayforPlay(10),
+  arrayIndices: utils.generateArrayIndices(10),
   history: [],
   recentIndicesAffected: [],
   algoFun: null,
@@ -61,6 +62,18 @@ function reducer(state, action) {
         value: action.payload,
         array: utils.generateArrayforPlay(action.payload),
       };
+    case "SIZE_CHANGE":
+      return {
+        ...state,
+        value: action.payload,
+        array: utils.generateArrayforPlay(action.payload),
+        isSorting: false,
+        currentStep: 0,
+        time: 0,
+        history: [],
+        recentIndicesAffected: [],
+        arrayIndices: utils.generateArrayIndices(action.payload),
+      };
     case "SET_RECENT":
       return {
         ...state,
@@ -76,10 +89,6 @@ function reducer(state, action) {
         ...state,
         time: state.isSorting ? state.time + 1 : state.time,
       };
-    // case "ALGO_START":
-    //   return {
-
-    //   }
     default:
       return state;
   }

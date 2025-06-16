@@ -3,6 +3,8 @@ import styles from "./PlayModeArrayContainer.module.css";
 import { usePlayModeContext } from "../../contexts/PlayModeContext";
 import { useRef, useState, useEffect } from "react";
 
+import Tooltip from "@mui/material/Tooltip";
+
 import {
   DndContext,
   closestCenter,
@@ -114,12 +116,13 @@ function PlayModeArrayContainer() {
           strategy={horizontalListSortingStrategy}
         >
           <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
-            {state.array.map((item) => (
+            {state.array.map((item, index) => (
               <Bar
                 arrayContainerRef={ArrayContainerRef}
                 key={item.id}
                 id={item.id}
                 height={item.value}
+                index={index}
               />
             ))}
           </div>
@@ -131,7 +134,7 @@ function PlayModeArrayContainer() {
   );
 }
 
-function Bar({ arrayContainerRef, id, height }) {
+function Bar({ arrayContainerRef, id, height, index }) {
   const { state } = usePlayModeContext();
   const [dimensions, setDimensions] = useState({
     height: "50px",
@@ -182,12 +185,13 @@ function Bar({ arrayContainerRef, id, height }) {
           width: dimensions.width,
         }}
       >
-        {id}
+        {index}
       </div>
-      <div style={style} key={id} className={styles.Bar}>
-        {height}
-        <br />({id})
-      </div>
+      <Tooltip title={height} arrow>
+        <div style={style} key={id} className={styles.Bar}>
+          {height}
+        </div>
+      </Tooltip>
     </div>
   );
 }

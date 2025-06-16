@@ -2,6 +2,7 @@
   height: 400px;
   width: 90vw;
   background-color: rgba(236, 236, 236, 0.01);
+  margin: 10px 0px;
 }
 
 .Bar {
@@ -14,8 +15,7 @@
   width: auto;
 }
 
-.ArrayContainer,
-.ArrayContainerBoxView {
+.ArrayContainer {
   background-color: rgba(236, 236, 236, 0.01);
   height: 400px;
   width: 100%;
@@ -24,10 +24,7 @@
   flex-direction: row;
   overflow-x: auto;
   border-radius: 5px;
-}
-
-.ArrayContainerBoxView {
-  align-items: center;
+  /* margin: 10px 0px; */
 }
 
 .Bar {
@@ -36,6 +33,12 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 
+  display: flex;
+  flex-direction: column;
+  font: 600 13px "Poppins", sans-serif;
+  color: white;
+  justify-content: flex-end;
+  align-items: center;
   transition: height 0.1s ease-in-out;
 }
 

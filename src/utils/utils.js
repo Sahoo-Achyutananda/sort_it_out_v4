@@ -45,10 +45,16 @@ function generateArrayforPlay(length) {
   return arr;
 }
 
+function generateArrayIndices(length) {
+  const arr = Array.from({ length }, (_, index) => index);
+  return arr;
+}
+
 export {
   getRandomHeight,
   randomDelay,
   generateArray,
   generateArrayforRace,
   generateArrayforPlay,
+  generateArrayIndices,
 };

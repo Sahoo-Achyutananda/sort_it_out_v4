@@ -37,6 +37,10 @@ function InputFields({
   algoPlay,
 }) {
   const { state: statePlay, dispatch: dispatchPlay } = usePlayModeContext();
+
+  // const location = useLocation();
+  // const isPlayMode = location.pathname.includes("/play");
+
   return (
     <div className={styles.Inputs}>
       <Tooltip
@@ -102,13 +106,15 @@ function InputFields({
               onChange={(e) =>
                 !isPlayMode
                   ? dispatch({ type: "valueChange", payload: e.target.value })
-                  : dispatchPlay({ type: "SET_SIZE", payload: e.target.value })
+                  : dispatchPlay({
+                      type: "SIZE_CHANGE",
+                      payload: e.target.value,
+                    })
               }
               className={styles.valueSlider}
             />
           </div>
         </Tooltip>
-        {isPlayMode ? <PlayModeControls algoPlay={algoPlay} /> : ""}
 
         <div className={styles.utilitiesDiv}>
           {!isPlayMode ? (
@@ -138,23 +144,20 @@ function InputFields({
           ) : (
             ""
           )}
+          {isPlayMode ? <PlayModeControls algoPlay={algoPlay} /> : ""}
           <div className={styles.modeSwitcher}>
-            <NavLink
-              to={json.link}
-              className={({ isActive }) =>
-                `${styles.tab} ${isActive ? styles.activeTab : ""}`
-              }
-            >
-              Normal Mode
-            </NavLink>
-            <NavLink
-              to={`${json.link}/play`}
-              className={({ isActive }) =>
-                `${styles.tab} ${isActive ? styles.activeTab : ""}`
-              }
-            >
-              Play Mode
-            </NavLink>
+            {isPlayMode ? (
+              <NavLink to={json.link} className={styles.modeToggleLink}>
+                Vizualizer
+              </NavLink>
+            ) : (
+              <NavLink
+                to={`${json.link}/play`}
+                className={styles.modeToggleLink}
+              >
+                Game Mode 🎮
+              </NavLink>
+            )}
           </div>
         </div>
         {/* </div> */}
