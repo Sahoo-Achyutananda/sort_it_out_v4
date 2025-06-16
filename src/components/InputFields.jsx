@@ -70,7 +70,10 @@ function InputFields({
       <div className={styles.userInputs}>
         {!isPlayMode ? (
           <Tooltip title="Set Speed 🏃‍♀️" followCursor interactive>
-            <div className={`${styles.sliderDiv} ${styles.speedDiv}`}>
+            <div
+              id="speedDiv"
+              className={`${styles.sliderDiv} ${styles.speedDiv}`}
+            >
               <SpeedIcon fontSize="small" sx={{ color: "white" }} />
               <Slider
                 aria-label="Speed"
@@ -92,7 +95,10 @@ function InputFields({
           ""
         )}
         <Tooltip title="Set Array Size 📦" interactive followCursor>
-          <div className={`${styles.sliderDiv} ${styles.valueDiv}`}>
+          <div
+            id="valueDiv"
+            className={`${styles.sliderDiv} ${styles.valueDiv}`}
+          >
             <DataArrayIcon fontSize="small" sx={{ color: "white" }} />
             <Slider
               aria-label="Size"
@@ -116,7 +122,7 @@ function InputFields({
           </div>
         </Tooltip>
 
-        <div className={styles.utilitiesDiv}>
+        <div id="utilitiesDiv" className={styles.utilitiesDiv}>
           {!isPlayMode ? (
             <div className={styles.utilities}>
               <ToggleButtonGroup

@@ -12,11 +12,53 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { PlayModeProvider } from "./contexts/PlayModeContext.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
+import Joyride from "react-joyride";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [run, setRun] = useState(true);
+
+  const steps = [
+    {
+      target: "#speedDiv",
+      content: "This is the first step!",
+    },
+    {
+      target: "#valueDiv",
+      content: "This is the second step!",
+    },
+    {
+      target: "#utilitiesDiv",
+      content: "This is the third step!",
+    },
+  ];
+
+  // useEffect(() => {
+  //   const speedDiv = document.querySelector("#speedDiv");
+  //   const valueDiv = document.querySelector("#valueDiv");
+  //   const utilitiesDiv = document.querySelector("#utilitiesDiv");
+
+  //   if (speedDiv && valueDiv && utilitiesDiv) {
+  //     setRun(true);
+  //   }
+  // }, []);
+
   return (
     <BrowserRouter>
       <RouteChangeWrapper>
+        <Joyride
+          steps={steps}
+          run={run}
+          scrollOffset={100}
+          showSkipButton
+          continuous
+          styles={{
+            options: {
+              zIndex: 10000,
+              primaryColor: "#673ab7",
+            },
+          }}
+        />
         <PlayModeProvider>
           <Navbar></Navbar>
           <ToastContainer
@@ -34,10 +76,6 @@ function App() {
           />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/bubble">
-              <Route index element={<BubbleSort />} />
-              <Route path="play" element={<BubbleSortPlay />} />
-            </Route> */}
             <Route path="/bubble" element={<BubbleSort />}>
               <Route index element={null} />{" "}
               <Route path="play" element={<BubbleSortPlay />} />
