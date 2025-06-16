@@ -4,6 +4,9 @@ import { usePlayModeContext } from "../../contexts/PlayModeContext";
 import { useRef, useState, useEffect } from "react";
 
 import Tooltip from "@mui/material/Tooltip";
+// import VisibilityIcon from "@mui/icons-material/Visibility";
+// import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
 import {
   DndContext,
@@ -28,8 +31,9 @@ import { CSS } from "@dnd-kit/utilities";
 function PlayModeArrayContainer() {
   const [correctCount, setCorrectCount] = useState(0);
   const { dispatch, state } = usePlayModeContext();
+  const [hint, toggleHint] = useState(false);
+  const [correct, setCorrect] = useState(null);
   const ArrayContainerRef = useRef(null);
-
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
@@ -69,9 +73,13 @@ function PlayModeArrayContainer() {
     if (newArray[newIndex].value === nextStateArray[newIndex].value) {
       const affectedIds = [oldIndex, newIndex];
 
+      dispatch({ type: "CHANGE_POINT", payload: 20 });
       dispatch({ type: "SET_RECENT", payload: affectedIds });
       dispatch({ type: "INCR_STEP" });
+      setCorrect(true);
     } else {
+      dispatch({ type: "CHANGE_POINT", payload: -10 });
+      setCorrect(false);
       return;
     }
 
@@ -86,51 +94,57 @@ function PlayModeArrayContainer() {
     }
     setCorrectCount(newCorrectCount);
     dispatch({ type: "SET_ARRAY", payload: newArray });
-    // }
   }
 
   return (
-    <div className={styles.PlayModeContainer}>
-      {/* <select
-        className={styles.AlgoSelect}
-        value={state.algo}
-        onChange={handleAlgoSelect}
-      >
-        <option value="random">Random</option>
-        <option value="bubble">Bubble Sort</option>
-        <option value="selection">Selection Sort</option>
-        <option value="insertion">Insertion Sort</option>
-        <option value="quick">Quick Sort</option>
-        <option value="merge">Merge Sort</option>
-      </select> */}
-
-      {/* <div className={styles.AlgoName}>{state.algo}</div> */}
-
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={state.array.map((item) => item.id)}
-          strategy={horizontalListSortingStrategy}
+    <>
+      <div className={styles.messageBox}>
+        <div className={styles.statusBox}>
+          {!state.isSorting
+            ? "Press Play Button to Start"
+            : hint
+            ? state.history[state.currentStep].hint
+            : correct
+            ? "CORRECT : The Swap is Correct | Points +20"
+            : "INCORRECT : The swap is incorrect | Points -10"}
+        </div>
+        <div
+          className={hint ? styles.hintBtn : styles.hintBtnActive}
+          onClick={() => toggleHint(!hint)}
         >
-          <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
-            {state.array.map((item, index) => (
-              <Bar
-                arrayContainerRef={ArrayContainerRef}
-                key={item.id}
-                id={item.id}
-                height={item.value}
-                index={index}
-              />
-            ))}
-          </div>
-        </SortableContext>
-      </DndContext>
+          <LightbulbIcon
+            fontSize="small"
+            sx={hint ? { color: "black" } : { color: "yellow" }}
+          />
+        </div>
+      </div>
+      <div className={styles.PlayModeContainer}>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={state.array.map((item) => item.id)}
+            strategy={horizontalListSortingStrategy}
+          >
+            <div className={styles.ArrayContainer} ref={ArrayContainerRef}>
+              {state.array.map((item, index) => (
+                <Bar
+                  arrayContainerRef={ArrayContainerRef}
+                  key={item.id}
+                  id={item.id}
+                  height={item.value}
+                  index={index}
+                />
+              ))}
+            </div>
+          </SortableContext>
+        </DndContext>
 
-      <div>Correctly Placed : {correctCount}</div>
-    </div>
+        {/* <div>Correctly Placed : {correctCount}</div> */}
+      </div>
+    </>
   );
 }
 

@@ -206,6 +206,9 @@ function PlayModeControls({ algoPlay }) {
         </Tooltip>
 
         <Timer getState={() => state} dispatch={dispatch} />
+        <div className={styles.pointsDiv}>
+          <span>Points :</span> <span>{state.points}</span>
+        </div>
       </div>
     </>
   );

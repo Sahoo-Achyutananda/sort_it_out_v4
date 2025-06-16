@@ -24,6 +24,7 @@ const initialState = {
   algoFun: null,
   currentStep: 0,
   isSorting: false,
+  points: 0,
 };
 
 function reducer(state, action) {
@@ -88,6 +89,11 @@ function reducer(state, action) {
       return {
         ...state,
         time: state.isSorting ? state.time + 1 : state.time,
+      };
+    case "CHANGE_POINT":
+      return {
+        ...state,
+        points: state.points + action.payload,
       };
     default:
       return state;

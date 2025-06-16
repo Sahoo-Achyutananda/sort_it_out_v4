@@ -2,7 +2,7 @@
   height: 400px;
   width: 90vw;
   background-color: rgba(236, 236, 236, 0.01);
-  margin: 10px 0px;
+  margin: 5px 0px;
 }
 
 .Bar {
@@ -72,4 +72,46 @@
   .index {
     font: 300 0.4rem "Poppins", sans-serif;
   }
+}
+
+.messageBox {
+  width: 90vw;
+  height: 45px;
+  margin: 5px 0px;
+  border-radius: 5px;
+  background-color: rgba(240, 248, 255, 0.045);
+  position: relative;
+}
+
+.statusBox {
+  width: calc(90vw - 50px);
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font: 400 14px Poppins, sans-serif;
+}
+.hintBtn,
+.hintBtnActive {
+  position: absolute;
+  background-color: yellow;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 50px;
+  height: 100%;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.hntBtn:hover {
+  background-color: rgb(253, 255, 156);
+}
+
+.hintBtnActive {
+  background-color: rgba(240, 248, 255, 0.045);
 }
