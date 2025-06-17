@@ -37,6 +37,7 @@ function reducer(state, action) {
         algoFun: action.payload,
         isSorting: true,
         currentStep: 0,
+        points: 0,
       };
     case "RESET":
       return {
@@ -45,12 +46,14 @@ function reducer(state, action) {
         isSorting: false,
         currentStep: 0,
         time: 0,
+        points: 0,
         recentIndicesAffected: [],
       };
     case "REGENERATE":
       return {
         ...state,
         array: utils.generateArrayforPlay(state.value),
+        points: 0,
       };
     case "SET_ARRAY":
       return {
@@ -71,6 +74,7 @@ function reducer(state, action) {
         isSorting: false,
         currentStep: 0,
         time: 0,
+        points: 0,
         history: [],
         recentIndicesAffected: [],
         arrayIndices: utils.generateArrayIndices(action.payload),

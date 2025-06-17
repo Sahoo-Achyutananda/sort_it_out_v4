@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .FormTitle > h2 {
@@ -195,10 +196,4 @@
   text-align: center;
   font: 500 20px "Roboto", sans-serif;
   color: white;
-}
-
-.Divider {
-  border: dashed 2px darkviolet;
-  width: 70%;
-  margin-bottom: 30px;
 }

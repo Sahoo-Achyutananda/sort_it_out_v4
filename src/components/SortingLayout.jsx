@@ -208,8 +208,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             backgroundColor: "black",
             primaryColor: "purple",
             textColor: "white",
-            fontFamily: "Poppins",
-            fontSize: "14px",
           },
         }}
         callback={(data) => {

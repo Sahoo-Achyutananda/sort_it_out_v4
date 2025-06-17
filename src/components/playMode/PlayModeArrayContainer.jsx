@@ -4,6 +4,7 @@ import { usePlayModeContext } from "../../contexts/PlayModeContext";
 import { useRef, useState, useEffect } from "react";
 
 import Tooltip from "@mui/material/Tooltip";
+// import { ToastContainer, toast, Slide } from "react-toastify";
 // import VisibilityIcon from "@mui/icons-material/Visibility";
 // import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
@@ -29,7 +30,6 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 function PlayModeArrayContainer() {
-  const [correctCount, setCorrectCount] = useState(0);
   const { dispatch, state } = usePlayModeContext();
   const [hint, toggleHint] = useState(false);
   const [correct, setCorrect] = useState(null);
@@ -43,6 +43,16 @@ function PlayModeArrayContainer() {
   });
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
+
+  // function handleHintBtn() {
+  //   if (hint === true) {
+  //     setTimeout(() => {
+  //       toggleHint(false);
+  //     }, 1500);
+  //   } else {
+  //     toggleHint(true);
+  //   }
+  // }
 
   function handleDragEnd(event) {
     const { active, over } = event;
@@ -76,37 +86,42 @@ function PlayModeArrayContainer() {
       dispatch({ type: "CHANGE_POINT", payload: 20 });
       dispatch({ type: "SET_RECENT", payload: affectedIds });
       dispatch({ type: "INCR_STEP" });
+
       setCorrect(true);
     } else {
       dispatch({ type: "CHANGE_POINT", payload: -10 });
       setCorrect(false);
       return;
     }
-
-    // Checking How many are correctly sorted -
-    const targetArray = state.history[state.history.length - 1].arrayState;
-    let newCorrectCount = 0;
-
-    for (let i = 0; i < newArray.length; i++) {
-      if (newArray[i].id === targetArray[i].id) {
-        newCorrectCount++;
-      }
-    }
-    setCorrectCount(newCorrectCount);
     dispatch({ type: "SET_ARRAY", payload: newArray });
   }
 
   return (
     <>
       <div className={styles.messageBox}>
-        <div className={styles.statusBox}>
+        {/* <div className={styles.statusBox}> */}
+        <div
+          className={`${styles.statusBox} ${
+            !state.isSorting
+              ? styles.statusBox
+              : hint
+              ? styles.statusBoxHint
+              : state.currentStep > 0
+              ? !correct
+                ? styles.statusBoxSuccess
+                : styles.statusBoxError
+              : styles.statusBox
+          }`}
+        >
           {!state.isSorting
             ? "Press Play Button to Start"
             : hint
             ? state.history[state.currentStep].hint
-            : correct
-            ? "CORRECT : The Swap is Correct | Points +20"
-            : "INCORRECT : The swap is incorrect | Points -10"}
+            : state.currentStep > 0
+            ? correct
+              ? "CORRECT : The Swap is Correct | Points +20"
+              : "INCORRECT : The swap is incorrect | Points -10"
+            : "Make a move"}
         </div>
         <div
           className={hint ? styles.hintBtn : styles.hintBtnActive}
@@ -141,8 +156,6 @@ function PlayModeArrayContainer() {
             </div>
           </SortableContext>
         </DndContext>
-
-        {/* <div>Correctly Placed : {correctCount}</div> */}
       </div>
     </>
   );

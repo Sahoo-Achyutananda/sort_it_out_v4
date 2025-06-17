@@ -63,8 +63,7 @@ function Feedback({ scrollRef = null, fetchRatings }) {
   }
   return (
     <>
-      <div ref={scrollRef} className={styles.Divider}></div>
-      <div className={styles.FormTitle}>
+      <div className={styles.FormTitle} ref={scrollRef}>
         <h2>Give Your Feedback</h2>
         <p>
           Provide your valuable feedback so that i can improve my future
