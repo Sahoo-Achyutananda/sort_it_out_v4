@@ -18,10 +18,11 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import PauseIcon from "@mui/icons-material/Pause";
 import Timer from "./Timer.jsx";
 import { usePlayModeContext } from "../contexts/PlayModeContext";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 
 const CustomToggleButton = styled(ToggleButton)(() => ({
   color: "white",
-  backgroundColor: "#424242",
+  backgroundColor: "rgba(236, 236, 236, 0.042)",
   "&.Mui-selected": {
     color: "white",
     backgroundColor: "rgb(103, 3, 204)",
@@ -35,6 +36,7 @@ function InputFields({
   json,
   isPlayMode,
   algoPlay,
+  setRun,
 }) {
   const { state: statePlay, dispatch: dispatchPlay } = usePlayModeContext();
 
@@ -146,6 +148,14 @@ function InputFields({
                   </CustomToggleButton>
                 </Tooltip>
               </ToggleButtonGroup>
+              <Tooltip title="Show Tutorial" arrow>
+                <button
+                  onClick={() => setRun((prev) => !prev)}
+                  className={styles.showTutorialBtn}
+                >
+                  <AutoStoriesIcon fontSize="small" sx={{ color: "white" }} />
+                </button>
+              </Tooltip>
             </div>
           ) : (
             ""
@@ -161,7 +171,7 @@ function InputFields({
                 to={`${json.link}/play`}
                 className={styles.modeToggleLink}
               >
-                Game Mode 🎮
+                Game Mode
               </NavLink>
             )}
           </div>

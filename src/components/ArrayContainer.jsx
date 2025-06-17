@@ -1,5 +1,6 @@
 import styles from "./ArrayContainer.module.css";
 import { useRef, useEffect, useState } from "react";
+// import { useLocation } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StopIcon from "@mui/icons-material/Stop";
@@ -33,6 +34,7 @@ function ArrayContainer({ state, dispatch, algo }) {
       <div className={styles.MainArea}>
         <div className={styles.ArrayandPlaybackContainer}>
           <div
+            id="arrayContainerDiv"
             className={`${
               state.toggle === "bar"
                 ? styles.arrayContainer
@@ -56,7 +58,7 @@ function ArrayContainer({ state, dispatch, algo }) {
                   return <Box key={i} state={state} index={i} height={value} />;
                 })}
           </div>
-          <div className={styles.PlayControls}>
+          <div className={styles.PlayControls} id="playControlsDiv">
             <Timeline state={state} dispatch={dispatch} />
             <ControlButtons state={state} dispatch={dispatch} algo={algo} />
           </div>
@@ -72,7 +74,7 @@ function ArrayContainer({ state, dispatch, algo }) {
 
 function Counts({ state }) {
   return (
-    <div className={styles.Counts}>
+    <div id="counts" className={styles.Counts}>
       <div className={styles.Comparisons}>
         {state.comparisons} <span>Comparisons</span>
       </div>
@@ -144,7 +146,7 @@ export default ArrayContainer;
 
 function Timeline({ state, dispatch }) {
   return (
-    <div className={styles.Timeline}>
+    <div className={styles.Timeline} id="timeline">
       <Tooltip title="TimeLine ⏰" interactive followCursor>
         <div className={`${styles.sliderDiv} ${styles.valueDiv}`}>
           <Slider
@@ -180,7 +182,11 @@ function ControlButtons({ state, dispatch, algo }) {
     <>
       <div className={styles.buttonDiv}>
         <Tooltip title={!state.isPlaying ? "Play" : "Pause"} interactive arrow>
-          <button className={styles.buttonStart} onClick={handleStart}>
+          <button
+            className={styles.buttonStart}
+            id="buttonStart"
+            onClick={handleStart}
+          >
             {!state.isPlaying ? (
               <PlayArrowIcon fontSize="small" />
             ) : (
@@ -191,6 +197,7 @@ function ControlButtons({ state, dispatch, algo }) {
         <Tooltip title="Step Back" interactive arrow>
           <button
             className={styles.buttonRewind}
+            id="buttonRewind"
             onClick={() => dispatch({ type: "stepBackward" })}
           >
             <FastRewindIcon fontSize="small" />
@@ -199,6 +206,7 @@ function ControlButtons({ state, dispatch, algo }) {
         <Tooltip title="Step Ahead" interactive arrow>
           <button
             className={styles.buttonForward}
+            id="buttonForward"
             onClick={() => dispatch({ type: "stepForward" })}
           >
             <FastForwardIcon fontSize="small" />
@@ -209,6 +217,7 @@ function ControlButtons({ state, dispatch, algo }) {
         >
           <button
             className={styles.buttonReset}
+            id="buttonReset"
             onClick={() => dispatch({ type: "resetValues" })}
           >
             {state.isSorting ? (
@@ -227,29 +236,6 @@ function Transcript({ state, dispatch }) {
   const itemRefs = useRef([]);
   const parentRef = useRef(null);
   const [toggleAccordian, setToggleAccordian] = useState(true);
-  // const [isUserScrolling, setIsUserScrolling] = useState(false);
-  // const scrollTimeout = useRef(null);
-
-  // const handleScroll = () => {
-  //   if (!isUserScrolling) {
-  //     setIsUserScrolling(true);
-  //   }
-  //   if (scrollTimeout.current) {
-  //     clearTimeout(scrollTimeout.current);
-  //   }
-
-  //   scrollTimeout.current = setTimeout(() => {
-  //     setIsUserScrolling(false);
-  //   }, 5000);
-  // };
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (scrollTimeout.current) {
-  //       clearTimeout(scrollTimeout.current);
-  //     }
-  //   };
-  // }, []);
 
   useEffect(() => {
     const activeRef = itemRefs.current[state.currentStep];
@@ -291,13 +277,13 @@ function Transcript({ state, dispatch }) {
         </span>
       </div>
       <div
+        id="transcript"
         className={`${
           !state.history.length
             ? styles.TranscriptPlaceholder
             : styles.Transcript
         } ${toggleAccordian ? styles.show : styles.hide}`}
         ref={parentRef}
-        // onScroll={handleScroll}
       >
         {state.history.length ? (
           state.history.map((item, index) => (

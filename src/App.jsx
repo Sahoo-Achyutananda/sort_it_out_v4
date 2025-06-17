@@ -12,27 +12,8 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { PlayModeProvider } from "./contexts/PlayModeContext.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
-import Joyride from "react-joyride";
-import { useState, useEffect } from "react";
 
 function App() {
-  const [run, setRun] = useState(true);
-
-  const steps = [
-    {
-      target: "#speedDiv",
-      content: "This is the first step!",
-    },
-    {
-      target: "#valueDiv",
-      content: "This is the second step!",
-    },
-    {
-      target: "#utilitiesDiv",
-      content: "This is the third step!",
-    },
-  ];
-
   // useEffect(() => {
   //   const speedDiv = document.querySelector("#speedDiv");
   //   const valueDiv = document.querySelector("#valueDiv");
@@ -46,19 +27,6 @@ function App() {
   return (
     <BrowserRouter>
       <RouteChangeWrapper>
-        <Joyride
-          steps={steps}
-          run={run}
-          scrollOffset={100}
-          showSkipButton
-          continuous
-          styles={{
-            options: {
-              zIndex: 10000,
-              primaryColor: "#673ab7",
-            },
-          }}
-        />
         <PlayModeProvider>
           <Navbar></Navbar>
           <ToastContainer

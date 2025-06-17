@@ -31,19 +31,6 @@ body {
   width: 90vw;
 }
 
-/* @media (max-width: 600px) {
-  .utilities {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-
-    margin-top: 15px;
-
-    width: 90vw;
-  }
-} */
-
 .genInformation {
   display: flex;
   flex-direction: row;
@@ -71,4 +58,25 @@ body {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.tutorialImage {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.tutorialDiv h3 {
+  margin: 0;
+  font: 700 18px "Poppins", sans-serif;
+}
+
+.tutorialDiv p {
+  margin: 0.3rem 0 0;
+  font: 500 15px "Roboto", sans-serif;
+}
+
+.tutorialDiv button {
+  font: 500 13px "Roboto", sans-serif !important;
 }
