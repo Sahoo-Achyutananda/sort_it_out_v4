@@ -146,17 +146,27 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
     } else if (isPlayMode) {
       setSteps([
         {
-          target: ".buttonStart",
+          target: "#valueDiv",
           content: (
             <Tutorial
-              title="Start or Pause"
+              title="Set Array Size"
               para="Control the animation playback."
               image="/assets/start.png"
             />
           ),
         },
         {
-          target: ".buttonReset",
+          target: "#buttonStart",
+          content: (
+            <Tutorial
+              title="Start Game"
+              para="Start the Game"
+              image="/assets/reset.png"
+            />
+          ),
+        },
+        {
+          target: "#buttonReset",
           content: (
             <Tutorial
               title="Reset Array"
@@ -166,7 +176,37 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           ),
         },
         {
-          target: ".timerDisplay",
+          target: "#timer",
+          content: (
+            <Tutorial
+              title="Timer"
+              para="Track your completion time here."
+              image="/assets/timer.png"
+            />
+          ),
+        },
+        {
+          target: "#pointsDiv",
+          content: (
+            <Tutorial
+              title="Timer"
+              para="Track your completion time here."
+              image="/assets/timer.png"
+            />
+          ),
+        },
+        {
+          target: "#hintBtnActive",
+          content: (
+            <Tutorial
+              title="Timer"
+              para="Track your completion time here."
+              image="/assets/timer.png"
+            />
+          ),
+        },
+        {
+          target: "#playModeContainer",
           content: (
             <Tutorial
               title="Timer"

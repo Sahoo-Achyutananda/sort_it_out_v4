@@ -205,6 +205,7 @@ function PlayModeControls({ algoPlay }) {
       <div className={styles.buttonDiv}>
         <Tooltip title={!state.isPlaying ? "Play" : "Pause"} interactive arrow>
           <button
+            id="buttonStart"
             className={styles.buttonStart}
             disabled={state.isSorting}
             onClick={handleStart}
@@ -217,6 +218,7 @@ function PlayModeControls({ algoPlay }) {
           title={state.isSorting ? "Stop Sorting 🚫" : "Generate NEW Array"}
         >
           <button
+            id="buttonReset"
             className={styles.buttonReset}
             onClick={() =>
               state.isSorting
@@ -233,7 +235,7 @@ function PlayModeControls({ algoPlay }) {
         </Tooltip>
 
         <Timer getState={() => state} dispatch={dispatch} />
-        <div className={styles.pointsDiv}>
+        <div id="pointsDiv" className={styles.pointsDiv}>
           <span>Points :</span> <span>{state.points}</span>
         </div>
       </div>

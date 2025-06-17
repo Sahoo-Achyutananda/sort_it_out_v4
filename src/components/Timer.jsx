@@ -17,7 +17,7 @@ function Timer({ getState, dispatch }) {
   }, [getState().isSorting, dispatch]);
 
   return (
-    <div className={styles.timer}>
+    <div id="timer" className={styles.timer}>
       <TimerIcon fontSize="small" />
       {`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
         2,

@@ -44,16 +44,6 @@ function PlayModeArrayContainer() {
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
-  // function handleHintBtn() {
-  //   if (hint === true) {
-  //     setTimeout(() => {
-  //       toggleHint(false);
-  //     }, 1500);
-  //   } else {
-  //     toggleHint(true);
-  //   }
-  // }
-
   function handleDragEnd(event) {
     const { active, over } = event;
     /*
@@ -124,6 +114,7 @@ function PlayModeArrayContainer() {
             : "Make a move"}
         </div>
         <div
+          id="hintBtnActive"
           className={hint ? styles.hintBtn : styles.hintBtnActive}
           onClick={() => toggleHint(!hint)}
         >
@@ -133,7 +124,7 @@ function PlayModeArrayContainer() {
           />
         </div>
       </div>
-      <div className={styles.PlayModeContainer}>
+      <div id="playModeContainer" className={styles.PlayModeContainer}>
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
