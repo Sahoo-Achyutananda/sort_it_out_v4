@@ -170,7 +170,7 @@
 .buttonDiv {
   display: flex;
   gap: 10px;
-  margin: 5px 0px;
+  /* margin: 5px 0px; */
 }
 
 .buttonStart,
@@ -207,36 +207,58 @@
 }
 
 .modeSwitcher {
-  /* position: relative; */
   display: flex;
-  width: 150px;
-  height: 40px;
-  border-radius: 10px;
+  width: auto;
+  height: 37px;
+  border-radius: 5px;
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  font: 600 14px "Roboto", sans-serif;
-  background-color: white;
+  font: 500 13px "Roboto", sans-serif;
+  color: white;
   box-sizing: border-box;
-  /* z-index: 0; */
+}
+
+.modeSwitcher > .Divider {
+  height: 100%;
+  width: 2px;
+  background-color: rgba(102, 51, 153, 0.419);
 }
 
 /* NavLink styles */
-.modeToggleLink {
-  width: 100%;
+.modeToggleLink:nth-of-type(1),
+.modeToggleLink:nth-of-type(2) {
+  /* width: 100%; */
+  width: auto;
   height: 100%;
-  padding: 8px 16px;
-  border-radius: 6px;
-  color: black;
+  padding-inline: 10px;
+
+  /* border-radius: 6px; */
+  color: white;
+  background-color: rgba(236, 236, 236, 0.042);
   display: flex;
   text-decoration: none;
   justify-content: center;
   align-items: center;
 }
-/* 
+
+.modeToggleLink:nth-of-type(1) {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.modeToggleLink:nth-of-type(2) {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 .modeToggleLink:hover {
-  color: #4ade80;
-  /* transform: scale(1.05); */
+  background-color: rgb(29, 3, 56);
+}
+.modeToggleLinkActive {
+  background-color: rgb(103, 3, 204) !important;
+  color: white !important;
+}
 
 .pointsDiv {
   width: 85px;
@@ -256,7 +278,7 @@
 
 .showTutorialBtn {
   width: 40px;
-  height: 40px;
+  height: 37px;
   border: none;
   background-color: rgba(236, 236, 236, 0.042);
   border-radius: 5px;
@@ -266,4 +288,9 @@
 
 .showTutorialBtn:hover {
   background-color: rgb(103, 3, 204);
+}
+
+.modeSwitcherAndTutorial {
+  display: flex;
+  /* gap: 5px; */
 }

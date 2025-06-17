@@ -64,7 +64,12 @@ function InputFields({
             disabled={state.isSorting}
             placeholder="Enter Custom Array (eg: 20 30 50 10)"
             onChange={(e) =>
-              dispatch({ type: "customInput", payload: e.target.value })
+              !isPlayMode
+                ? dispatch({ type: "customInput", payload: e.target.value })
+                : dispatchPlay({
+                    type: "CUSTOM_INPUT",
+                    payload: e.target.value,
+                  })
             }
           ></input>
         </div>
@@ -148,32 +153,38 @@ function InputFields({
                   </CustomToggleButton>
                 </Tooltip>
               </ToggleButtonGroup>
-              <Tooltip title="Show Tutorial" arrow>
-                <button
-                  onClick={() => setRun((prev) => !prev)}
-                  className={styles.showTutorialBtn}
-                >
-                  <AutoStoriesIcon fontSize="small" sx={{ color: "white" }} />
-                </button>
-              </Tooltip>
             </div>
           ) : (
             ""
           )}
           {isPlayMode ? <PlayModeControls algoPlay={algoPlay} /> : ""}
-          <div className={styles.modeSwitcher}>
-            {isPlayMode ? (
-              <NavLink to={json.link} className={styles.modeToggleLink}>
+          <div className={styles.modeSwitcherAndTutorial}>
+            <div className={styles.modeSwitcher}>
+              <NavLink
+                to={json.link}
+                className={`${styles.modeToggleLink} ${
+                  !isPlayMode ? styles.modeToggleLinkActive : " "
+                }`}
+              >
                 Vizualizer
               </NavLink>
-            ) : (
               <NavLink
                 to={`${json.link}/play`}
-                className={styles.modeToggleLink}
+                className={`${styles.modeToggleLink} ${
+                  isPlayMode ? styles.modeToggleLinkActive : " "
+                }`}
               >
                 Game Mode
               </NavLink>
-            )}
+            </div>
+            <Tooltip title="Show Tutorial" arrow>
+              <button
+                onClick={() => setRun((prev) => !prev)}
+                className={styles.showTutorialBtn}
+              >
+                <AutoStoriesIcon fontSize="small" sx={{ color: "white" }} />
+              </button>
+            </Tooltip>
           </div>
         </div>
         {/* </div> */}

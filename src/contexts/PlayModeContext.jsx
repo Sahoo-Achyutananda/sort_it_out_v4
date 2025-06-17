@@ -99,6 +99,25 @@ function reducer(state, action) {
         ...state,
         points: state.points + action.payload,
       };
+    case "CUSTOM_INPUT": {
+      const str = action.payload;
+      const arr = str
+        .trim()
+        .split(/\s+/) // yeh more than one space ko bhi ignore kar deta hai !
+        .map((i) => parseInt(i))
+        .filter((num) => !isNaN(num) && num <= 350);
+      const finalArray = arr.map((val, index) => ({
+        value: Math.floor(val),
+        id: index,
+      }));
+      return {
+        ...state,
+        value: arr.length ? arr.length : 10,
+        array: arr.length
+          ? finalArray
+          : utils.generateArrayforRace(state.value),
+      };
+    }
     default:
       return state;
   }
