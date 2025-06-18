@@ -1,9 +1,20 @@
 import insertionSort from "../algorithms/insertion.js";
 import algoInformation from "../Data/data";
 import SortingLayout from "../components/SortingLayout.jsx";
+import insertionSortPlay from "../algorithms_playmode/insertion.js";
 
-function InsertionSort() {
-  return <SortingLayout algorithm={insertionSort} json = {algoInformation.insertionSort} />;
+export default function InsertionSort() {
+  return (
+    <SortingLayout
+      algorithm={insertionSort}
+      algorithmPlay={insertionSortPlay}
+      json={algoInformation.insertionSort}
+    />
+  );
 }
 
-export default InsertionSort;
+export function InsertionSortPlay() {
+  return <></>;
+}
+
+// export default InsertionSort;

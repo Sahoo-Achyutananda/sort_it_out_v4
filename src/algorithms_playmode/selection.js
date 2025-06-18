@@ -1,4 +1,4 @@
-function selectionSort(arr) {
+function selectionSortPlay(arr) {
   const array = [...arr];
   const n = array.length;
   let history = [];
@@ -32,4 +32,4 @@ function selectionSort(arr) {
   return history;
 }
 
-export default selectionSort;
+export default selectionSortPlay;

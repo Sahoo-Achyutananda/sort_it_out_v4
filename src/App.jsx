@@ -1,8 +1,8 @@
 import BubbleSort from "./pages/BubbleSort.jsx";
 import BubbleSortPlay from "./pages/BubbleSort.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SelectionSort from "./pages/SelectionSort";
-import InsertionSort from "./pages/InsertionSort";
+import SelectionSort, { SelectionSortPlay } from "./pages/SelectionSort";
+import InsertionSort, { InsertionSortPlay } from "./pages/InsertionSort";
 import MergeSort from "./pages/MergeSort";
 import QuickSort from "./pages/QuickSort";
 import RaceMode from "./pages/raceMode/RaceMode";
@@ -48,8 +48,14 @@ function App() {
               <Route index element={null} />{" "}
               <Route path="play" element={<BubbleSortPlay />} />
             </Route>
-            <Route path="/selection" element={<SelectionSort />} />
-            <Route path="/insertion" element={<InsertionSort />} />
+            <Route path="/selection" element={<SelectionSort />}>
+              <Route index element={null} />{" "}
+              <Route path="play" element={<SelectionSortPlay />} />
+            </Route>
+            <Route path="/insertion" element={<InsertionSort />}>
+              <Route index element={null} />{" "}
+              <Route path="play" element={<InsertionSortPlay />} />
+            </Route>
             <Route path="/merge" element={<MergeSort />} />
             <Route path="/quick" element={<QuickSort />} />
             <Route path="/racemode" element={<RaceMode />} />

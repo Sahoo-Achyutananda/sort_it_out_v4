@@ -1,4 +1,4 @@
-function insertionSort(arr) {
+function insertionSortPlay(arr) {
   const array = [...arr];
   const n = arr.length;
 
@@ -27,4 +27,4 @@ function insertionSort(arr) {
   return history;
 }
 
-export default insertionSort;
+export default insertionSortPlay;
