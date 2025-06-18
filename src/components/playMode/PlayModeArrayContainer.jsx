@@ -84,6 +84,12 @@ function PlayModeArrayContainer() {
       return;
     }
     dispatch({ type: "SET_ARRAY", payload: newArray });
+
+    const lastStep = state.currentStep === state.history.length - 1;
+    console.log(lastStep, state.currentStep);
+    if (lastStep) {
+      dispatch({ type: "SORTING_COMPLETED" });
+    }
   }
 
   return (

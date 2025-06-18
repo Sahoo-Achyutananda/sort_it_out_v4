@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import * as utils from "../utils/utils.js";
+import { launchConfetti } from "../utils/confetti.js";
 // import bubbleSort from "../algorithms_playmode/bubble.js";
 // import insertionSort from "../algorithms_playmode/insertion.js";
 // import selectionSort from "../algorithms_playmode/selection.js";
@@ -118,6 +119,14 @@ function reducer(state, action) {
           : utils.generateArrayforRace(state.value),
       };
     }
+    case "SORTING_COMPLETED":
+      launchConfetti();
+      return {
+        ...state,
+        isSorting: false,
+        history: [],
+        recentIndicesAffected: [],
+      };
     default:
       return state;
   }

@@ -71,6 +71,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             />
           ),
           disableBeacon: true,
+          placement: "right-start",
         },
         {
           target: "#timeline",
@@ -131,6 +132,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/transcript.png"
             />
           ),
+          placement: "left",
         },
         {
           target: "#counts",
@@ -237,7 +239,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
         steps={steps}
         run={run}
         continuous
-        scrollOffset={100}
+        scrollOffset={200}
         scrollToFirstStep={false}
         disableScrolling={false}
         showSkipButton

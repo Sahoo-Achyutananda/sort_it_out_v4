@@ -24,6 +24,11 @@ const titles = {
   "/merge": "Merge Sort",
   "/quick": "Quick Sort",
   "/racemode": "Race Mode",
+  "/bubble/play": "Bubble Sort / Play Mode",
+  "/selection/play": "Selection / Play Mode",
+  "/insertion/play": "Insertion Sort / Play Mode",
+  "/merge/play": "Merge Sort / Play Mode",
+  "/quick/play": "Quick Sort / Play Mode",
 };
 
 export default function Navbar() {
@@ -73,7 +78,11 @@ export default function Navbar() {
           >
             <DrawerList toggleDrawer={toggleDrawer} />
           </Drawer>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, fontSize: "18px" }}
+          >
             {pageTitle}
           </Typography>
           <div className={styles.advBoard}>

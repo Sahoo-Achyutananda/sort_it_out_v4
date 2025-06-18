@@ -28,6 +28,7 @@ function merge(arr, l, mid, r, history, stats) {
       swaps: stats.swaps,
       comparisons: stats.comparisons,
       comparedIndices: [leftIndex, rightIndex],
+      highlightIndices: Array.from({ length: r - l + 1 }, (_, idx) => l + idx),
       description: `Comparing ${compLeft} (index ${leftIndex}) and ${compRight} (index ${rightIndex})`,
     });
 
@@ -39,6 +40,10 @@ function merge(arr, l, mid, r, history, stats) {
         swaps: stats.swaps,
         comparisons: stats.comparisons,
         swappedIndices: [k],
+        highlightIndices: Array.from(
+          { length: r - l + 1 },
+          (_, idx) => l + idx
+        ),
         description: `Placed ${compLeft} at index ${k} from left subarray (index ${leftIndex})`,
       });
       i++;
@@ -50,6 +55,10 @@ function merge(arr, l, mid, r, history, stats) {
         swaps: stats.swaps,
         comparisons: stats.comparisons,
         swappedIndices: [k],
+        highlightIndices: Array.from(
+          { length: r - l + 1 },
+          (_, idx) => l + idx
+        ),
         description: `Placed ${compRight} at index ${k} from right subarray (index ${rightIndex})`,
       });
       j++;
@@ -66,6 +75,7 @@ function merge(arr, l, mid, r, history, stats) {
       swaps: stats.swaps,
       comparisons: stats.comparisons,
       swappedIndices: [k],
+      highlightIndices: Array.from({ length: r - l + 1 }, (_, idx) => l + idx),
       description: `Inserting remaining ${array_1[i]} at index ${k} from left subarray (index ${sourceIndex})`,
     });
     i++;
@@ -81,6 +91,7 @@ function merge(arr, l, mid, r, history, stats) {
       swaps: stats.swaps,
       comparisons: stats.comparisons,
       swappedIndices: [k],
+      highlightIndices: Array.from({ length: r - l + 1 }, (_, idx) => l + idx),
       description: `Inserting remaining ${array_2[j]} at index ${k} from right subarray (index ${sourceIndex})`,
     });
     j++;
