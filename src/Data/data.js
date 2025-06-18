@@ -19,6 +19,12 @@ const algoInformation = {
     ],
     time_complexity: { best: "O(n)", average: "O(n^2)", worst: "O(n^2)" },
     space_complexity: "O(1)",
+    instructions: [
+      "Start from the beginning and compare adjacent bars.",
+      "If the left bar is greater than the right, swap them.",
+      "Repeat the process for the unsorted portion of the array.",
+      "Ignore the bars at the end — they are already sorted.",
+    ],
     description:
       "Bubble Sort repeatedly compares adjacent elements and swaps them if they are in the wrong order. The largest elements 'bubble up' to the end with each pass.",
     code: `
@@ -53,6 +59,12 @@ function bubbleSort(arr) {
     space_complexity: "O(1)",
     description:
       "Insertion Sort builds the final sorted array one item at a time. It removes one element from the input data, finds the location it belongs to in the sorted list, and inserts it there.",
+    instructions: [
+      "Start from the second element and move left to find its correct position.",
+      "Shift elements to the right to make space for the current element.",
+      "Insert the element at the correct position in the sorted portion.",
+      "The left side of the array becomes sorted step by step.",
+    ],
     code: `
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
@@ -83,6 +95,12 @@ function insertionSort(arr) {
     space_complexity: "O(1)",
     description:
       "Selection Sort repeatedly finds the minimum element from the unsorted portion and moves it to the beginning. It divides the array into sorted and unsorted subarrays.",
+    instructions: [
+      "At each step, find the minimum element in the unsorted portion.",
+      "Swap it with the element at the current position.",
+      "Repeat this process for the remaining unsorted elements.",
+      "Ignore the bars that are already sorted in previous steps.",
+    ],
     code: `
 function selectionSort(arr) {
   let n = arr.length;

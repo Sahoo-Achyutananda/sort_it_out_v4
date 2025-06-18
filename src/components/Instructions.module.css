@@ -1,0 +1,43 @@
+.Instructions {
+  background: #f7f7f7;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.modalBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(54, 13, 80, 0.453);
+  /* background: whitesmoke; */
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.444);
+  color: white;
+  /* width: 90%; */
+  width: auto;
+  /* height: 400px; */
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  font: 500 16px "Roboto", sans-serif;
+}
+
+.modalBox > ul {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.instruction {
+  background: rgba(79, 7, 97, 0.248);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline: 10px;
+}

@@ -82,6 +82,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/timeline.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#buttonStart",
@@ -92,6 +93,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/start.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#buttonRewind",
@@ -102,6 +104,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/rewind.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#buttonForward",
@@ -112,6 +115,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/forward.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#buttonReset",
@@ -122,6 +126,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/reset.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#transcript",
@@ -133,6 +138,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             />
           ),
           placement: "left",
+          disableBeacon: true,
         },
         {
           target: "#counts",
@@ -144,6 +150,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             />
           ),
           placement: "left",
+          disableBeacon: true,
         },
         {
           target: "#modeSwitcher",
@@ -154,6 +161,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/sorting-area.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#showTutorial",
@@ -163,6 +171,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               para="At any point of time, feel free to revisit this Tutorial."
             />
           ),
+          disableBeacon: true,
         },
       ]);
     } else if (isPlayMode) {
@@ -176,6 +185,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/array-size.png"
             />
           ),
+          disableBeacon: true,
         },
         {
           target: "#buttonStart",
@@ -186,6 +196,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/start.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#buttonReset",
@@ -196,6 +207,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/reset.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#timer",
@@ -206,6 +218,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/timer.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#pointsDiv",
@@ -216,6 +229,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/points.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#hintBtnActive",
@@ -226,6 +240,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/hint.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#playModeContainer",
@@ -236,6 +251,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/sorting-area.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#modeSwitcher",
@@ -246,6 +262,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/sorting-area.png"
             />
           ),
+          // disableBeacon: true,
         },
         {
           target: "#showTutorial",
@@ -255,6 +272,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               para="At any point of time, feel free to revisit this Tutorial."
             />
           ),
+          // disableBeacon: true,
         },
       ]);
     } else {

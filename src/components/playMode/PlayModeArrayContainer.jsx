@@ -60,7 +60,7 @@ function PlayModeArrayContainer() {
     // gets the index of the droppable object
 
     let newArray;
-    if (state.algo === "selection") {
+    if (state.algo === "/selection") {
       newArray = [...state.array];
       [newArray[oldIndex], newArray[newIndex]] = [
         newArray[newIndex],

@@ -39,14 +39,24 @@
   justify-content: space-between;
   flex: 1;
   width: 40%;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
 }
 
 .utilities {
   display: flex;
 }
 
-@media (max-width: 850px) {
+.buttonsOnly {
+  display: flex;
+  gap: 5px;
+}
+
+.timerAndPoints {
+  display: flex;
+  gap: 5px;
+}
+
+@media (max-width: 1010px) {
   .userInputs {
     flex-direction: column;
     align-items: center;
@@ -68,6 +78,76 @@
   }
   .utilitiesDiv {
     width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .utilitiesDiv {
+    width: 100%;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .buttonDiv {
+    flex-wrap: wrap;
+  }
+  .buttonsOnly {
+    width: 90vw;
+    justify-content: space-between;
+  }
+
+  .timerAndPoints {
+    width: 90vw;
+    /* justify-content: space-between; */
+  }
+
+  .timerAndPoints > div {
+    width: 50%;
+  }
+
+  .buttonStart,
+  .buttonReset {
+    width: 50% !important;
+  }
+
+  .ToggleButtonGroup {
+    width: 90vw;
+  }
+
+  .ToggleButton {
+    width: 50%;
+  }
+
+  .modeSwitcherAndTutorial {
+    width: 90vw;
+    justify-content: space-between;
+  }
+}
+
+.InstructionandTutorial {
+  display: flex;
+}
+@media (max-width: 390px) {
+  /* .pointsDiv {
+    width: 55px !important;
+    height: 9px !important;
+    padding: 14px !important;
+    color: white;
+    font: 500 10px "Roboto", sans-serif;
+    border-radius: 7px;
+  } */
+
+  .ToggleButtonGroup {
+    width: 90vw;
+  }
+
+  .ToggleButton {
+    width: 50%;
+  }
+
+  .modeSwitcherAndTutorial {
+    width: 90vw;
+    justify-content: space-between;
   }
 }
 
@@ -160,7 +240,7 @@
   font-style: italic;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 670px) {
   .userArrayInput > div {
     font-size: 0.8rem;
   }
@@ -277,7 +357,8 @@
   justify-content: space-between;
 }
 
-.showTutorialBtn {
+.showTutorialBtn,
+.showInstructionsBtn {
   width: 40px;
   height: 37px;
   border: none;
@@ -285,9 +366,13 @@
   border-radius: 5px;
   cursor: pointer;
   margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.showTutorialBtn:hover {
+.showTutorialBtn:hover,
+.showInstructionsBtn:hover {
   background-color: rgb(103, 3, 204);
 }
 

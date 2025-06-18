@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import SpeedIcon from "@mui/icons-material/Speed";
-
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -15,10 +15,13 @@ import Tooltip from "@mui/material/Tooltip";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StopIcon from "@mui/icons-material/Stop";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import PauseIcon from "@mui/icons-material/Pause";
+// import PauseIcon from "@mui/icons-material/Pause";
 import Timer from "./Timer.jsx";
 import { usePlayModeContext } from "../contexts/PlayModeContext";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
+import { Modal } from "@mui/material";
+import Instructions from "./Instructions.jsx";
 
 const CustomToggleButton = styled(ToggleButton)(() => ({
   color: "white",
@@ -39,6 +42,9 @@ function InputFields({
   setRun,
 }) {
   const { state: statePlay, dispatch: dispatchPlay } = usePlayModeContext();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // const location = useLocation();
   // const isPlayMode = location.pathname.includes("/play");
@@ -133,6 +139,7 @@ function InputFields({
           {!isPlayMode ? (
             <div className={styles.utilities}>
               <ToggleButtonGroup
+                className={styles.ToggleButtonGroup}
                 id="utilitiesDiv"
                 color="primary"
                 size="small"
@@ -144,12 +151,18 @@ function InputFields({
                 }}
               >
                 <Tooltip title="Bar View">
-                  <CustomToggleButton value="bar">
+                  <CustomToggleButton
+                    value="bar"
+                    className={styles.ToggleButton}
+                  >
                     <BarChartIcon fontSize="small" />
                   </CustomToggleButton>
                 </Tooltip>
                 <Tooltip title="Box View">
-                  <CustomToggleButton value="box">
+                  <CustomToggleButton
+                    value="box"
+                    className={styles.ToggleButton}
+                  >
                     <WidgetsIcon fontSize="small" />
                   </CustomToggleButton>
                 </Tooltip>
@@ -158,7 +171,11 @@ function InputFields({
           ) : (
             ""
           )}
-          {isPlayMode ? <PlayModeControls algoPlay={algoPlay} /> : ""}
+          {isPlayMode ? (
+            <PlayModeControls algoPlay={algoPlay} json={json} />
+          ) : (
+            ""
+          )}
           <div className={styles.modeSwitcherAndTutorial}>
             <div id="modeSwitcher" className={styles.modeSwitcher}>
               <NavLink
@@ -178,67 +195,98 @@ function InputFields({
                 Game Mode
               </NavLink>
             </div>
-            <Tooltip title="Show Tutorial" arrow>
-              <button
-                id="showTutorial"
-                onClick={() => setRun((prev) => !prev)}
-                className={styles.showTutorialBtn}
-              >
-                <AutoStoriesIcon fontSize="small" sx={{ color: "white" }} />
-              </button>
-            </Tooltip>
+            <div className={styles.InstructionandTutorial}>
+              <Tooltip title="Show Tutorial" arrow>
+                <button
+                  id="showTutorial"
+                  onClick={() => setRun(true)}
+                  className={styles.showTutorialBtn}
+                >
+                  <AutoStoriesIcon fontSize="small" sx={{ color: "white" }} />
+                </button>
+              </Tooltip>
+
+              <Tooltip title="Show Instruction" arrow>
+                <button
+                  id="showInstruction"
+                  onClick={() => handleOpen()}
+                  className={styles.showInstructionsBtn}
+                >
+                  <InfoOutlineIcon fontSize="small" sx={{ color: "white" }} />
+                </button>
+              </Tooltip>
+            </div>
           </div>
         </div>
         {/* </div> */}
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Instructions lines={json.instructions} />
+      </Modal>
     </div>
   );
 }
 
-function PlayModeControls({ algoPlay }) {
+function PlayModeControls({ algoPlay, json }) {
   const { state, dispatch } = usePlayModeContext();
 
   function handleStart() {
-    dispatch({ type: "SET_ALGO", payload: algoPlay });
+    dispatch({
+      type: "SET_ALGO",
+      payload: { algoPlay: algoPlay, name: json.link },
+    });
     return;
   }
   return (
     <>
       <div className={styles.buttonDiv}>
-        <Tooltip title={!state.isPlaying ? "Play" : "Pause"} interactive arrow>
-          <button
-            id="buttonStart"
-            className={styles.buttonStart}
-            disabled={state.isSorting}
-            onClick={handleStart}
+        <div className={styles.buttonsOnly}>
+          <Tooltip
+            title={!state.isPlaying ? "Play" : "Pause"}
+            interactive
+            arrow
           >
-            <PlayArrowIcon fontSize="small" />
-          </button>
-        </Tooltip>
+            <button
+              id="buttonStart"
+              className={styles.buttonStart}
+              disabled={state.isSorting}
+              onClick={handleStart}
+            >
+              <PlayArrowIcon fontSize="small" />
+            </button>
+          </Tooltip>
 
-        <Tooltip
-          title={state.isSorting ? "Stop Sorting 🚫" : "Generate NEW Array"}
-        >
-          <button
-            id="buttonReset"
-            className={styles.buttonReset}
-            onClick={() =>
-              state.isSorting
-                ? dispatch({ type: "RESET" })
-                : dispatch({ type: "REGENERATE" })
-            }
+          <Tooltip
+            title={state.isSorting ? "Stop Sorting 🚫" : "Generate NEW Array"}
           >
-            {state.isSorting ? (
-              <StopIcon fontSize="small" />
-            ) : (
-              <RestartAltIcon fontSize="small" />
-            )}
-          </button>
-        </Tooltip>
+            <button
+              id="buttonReset"
+              className={styles.buttonReset}
+              onClick={() =>
+                state.isSorting
+                  ? dispatch({ type: "RESET" })
+                  : dispatch({ type: "REGENERATE" })
+              }
+            >
+              {state.isSorting ? (
+                <StopIcon fontSize="small" />
+              ) : (
+                <RestartAltIcon fontSize="small" />
+              )}
+            </button>
+          </Tooltip>
+        </div>
 
-        <Timer getState={() => state} dispatch={dispatch} />
-        <div id="pointsDiv" className={styles.pointsDiv}>
-          <span>Points :</span> <span>{state.points}</span>
+        <div className={styles.timerAndPoints}>
+          <Timer getState={() => state} dispatch={dispatch} />
+          <div id="pointsDiv" className={styles.pointsDiv}>
+            <span>Points :</span> <span>{state.points}</span>
+          </div>
         </div>
       </div>
     </>

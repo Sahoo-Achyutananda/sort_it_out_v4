@@ -22,9 +22,9 @@ function reducer(state, action) {
     case "SET_ALGO":
       return {
         ...state,
-        algo: action.payload,
-        history: action.payload(state.array),
-        algoFun: action.payload,
+        algo: action.payload.name,
+        history: action.payload.algoPlay(state.array),
+        algoFun: action.payload.algoPlay,
         isSorting: true,
         currentStep: 0,
         points: 0,
