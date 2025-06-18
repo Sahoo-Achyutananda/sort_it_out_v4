@@ -1,5 +1,6 @@
 import * as utils from "./utils/utils";
 import { launchConfetti } from "./utils/confetti.js";
+// import { toast } from "react-toastify";
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -64,8 +65,7 @@ export function reducer(state, action) {
     case "seek":
       return {
         ...state,
-        isSorting:
-          state.currentStep === state.history.length - 1 ? false : true,
+        isSorting: true,
         array: state.history[parseInt(action.payload)].arrayState,
         selectedIndices:
           state.history[parseInt(action.payload)].comparedIndices || [],

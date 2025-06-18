@@ -71,7 +71,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             />
           ),
           disableBeacon: true,
-          placement: "right-start",
+          placement: "right-end",
         },
         {
           target: "#timeline",
@@ -143,6 +143,26 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               image="/assets/counts.png"
             />
           ),
+          placement: "left",
+        },
+        {
+          target: "#modeSwitcher",
+          content: (
+            <Tutorial
+              title="Toggle Modes"
+              para="Switch between Visualizer and Game Mode"
+              image="/assets/sorting-area.png"
+            />
+          ),
+        },
+        {
+          target: "#showTutorial",
+          content: (
+            <Tutorial
+              title="Rewatch Tutorial"
+              para="At any point of time, feel free to revisit this Tutorial."
+            />
+          ),
         },
       ]);
     } else if (isPlayMode) {
@@ -151,9 +171,9 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#valueDiv",
           content: (
             <Tutorial
-              title="Set Array Size"
-              para="Control the animation playback."
-              image="/assets/start.png"
+              title="Adjust Array Size"
+              para="Change the number of elements in the array to increase or decrease the challenge."
+              image="/assets/array-size.png"
             />
           ),
         },
@@ -161,9 +181,9 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#buttonStart",
           content: (
             <Tutorial
-              title="Start Game"
-              para="Start the Game"
-              image="/assets/reset.png"
+              title="Start the Game"
+              para="Begin the interactive sorting game. Try placing the elements correctly step by step."
+              image="/assets/start.png"
             />
           ),
         },
@@ -171,8 +191,8 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#buttonReset",
           content: (
             <Tutorial
-              title="Reset Array"
-              para="Reset the array or generate a new one."
+              title="Reset the Game"
+              para="Reset the current array or generate a new one to start over."
               image="/assets/reset.png"
             />
           ),
@@ -181,8 +201,8 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#timer",
           content: (
             <Tutorial
-              title="Timer"
-              para="Track your completion time here."
+              title="Track Your Time"
+              para="Keep an eye on how long you take to complete the sorting."
               image="/assets/timer.png"
             />
           ),
@@ -191,9 +211,9 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#pointsDiv",
           content: (
             <Tutorial
-              title="Timer"
-              para="Track your completion time here."
-              image="/assets/timer.png"
+              title="Score System"
+              para="Earn points for correct moves and lose points for incorrect ones. Try to maximize your score!"
+              image="/assets/points.png"
             />
           ),
         },
@@ -201,9 +221,9 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#hintBtnActive",
           content: (
             <Tutorial
-              title="Timer"
-              para="Track your completion time here."
-              image="/assets/timer.png"
+              title="Use Hints Wisely"
+              para="Toggle hints to get guidance on your next move. Hints can help when you're stuck."
+              image="/assets/hint.png"
             />
           ),
         },
@@ -211,9 +231,28 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           target: "#playModeContainer",
           content: (
             <Tutorial
-              title="Timer"
-              para="Track your completion time here."
-              image="/assets/timer.png"
+              title="Drag & Drop to Sort"
+              para="Interact with the elements by dragging them into the correct order based on the sorting algorithm."
+              image="/assets/sorting-area.png"
+            />
+          ),
+        },
+        {
+          target: "#modeSwitcher",
+          content: (
+            <Tutorial
+              title="Toggle Modes"
+              para="Switch between Visualizer and Game Mode"
+              image="/assets/sorting-area.png"
+            />
+          ),
+        },
+        {
+          target: "#showTutorial",
+          content: (
+            <Tutorial
+              title="Rewatch Tutorial"
+              para="At any point of time, feel free to revisit this Tutorial."
             />
           ),
         },
@@ -222,6 +261,12 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
       setSteps([]); // no tutorial on other pages
     }
   }, [isPlayMode]);
+
+  // useEffect(() => {
+  //   if (isPlayMode) {
+  //     setRun(true);
+  //   }
+  // }, [isPlayMode]);
 
   // Check localStorage for first-time visit
   useEffect(() => {
@@ -232,6 +277,14 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
       localStorage.setItem("hasVisited", "true"); // Mark visited
     }
   }, []);
+
+  useEffect(() => {
+    const hasVisitedGame = localStorage.getItem("hasVisitedGameMode");
+    if (isPlayMode && !hasVisitedGame) {
+      setRun(true);
+      localStorage.setItem("hasVisitedGameMode", "true");
+    }
+  }, [isPlayMode]);
 
   return (
     <>

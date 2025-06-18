@@ -1,18 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import * as utils from "../utils/utils.js";
 import { launchConfetti } from "../utils/confetti.js";
-// import bubbleSort from "../algorithms_playmode/bubble.js";
-// import insertionSort from "../algorithms_playmode/insertion.js";
-// import selectionSort from "../algorithms_playmode/selection.js";
-// import performMergeSort from "../algorithms_playmode/merge.js";
-
-// const algoMapping = {
-//   random: () => true,
-//   bubble: bubbleSort,
-//   insertion: insertionSort,
-//   selection: selectionSort,
-//   merge: performMergeSort,
-// };
+// import { toast } from "react-toastify";
 
 const initialState = {
   algo: "random",
@@ -54,6 +43,7 @@ function reducer(state, action) {
       return {
         ...state,
         array: utils.generateArrayforPlay(state.value),
+        time: 0,
         points: 0,
       };
     case "SET_ARRAY":
@@ -114,6 +104,7 @@ function reducer(state, action) {
       return {
         ...state,
         value: arr.length ? arr.length : 10,
+        time: 0,
         array: arr.length
           ? finalArray
           : utils.generateArrayforRace(state.value),

@@ -13,21 +13,28 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Slider from "@mui/material/Slider";
 
 import { forwardRef } from "react";
+// import { toast } from "react-toastify";
 
 function ArrayContainer({ state, dispatch, algo }) {
   const arrayContainerRef = useRef(null);
 
   useEffect(() => {
     let interval;
-    if (state.currentStep === state.history.length - 1)
+    if (state.currentStep === state.history.length - 1) {
       dispatch({ type: "sortingCompleted" });
+      // toast.success("Array is Completely Sorted", {
+      //   position: "top-center",
+      //   theme: "dark",
+      //   autoClose: 3000,
+      // });
+    }
     if (state.isPlaying) {
       interval = setInterval(() => {
         dispatch({ type: "stepForward" });
       }, 1000 / state.speed);
     }
     return () => clearInterval(interval);
-  }, [state.isPlaying, state.speed, state.currentStep, dispatch]);
+  }, [state.isPlaying, state.speed, state.currentStep]);
 
   return (
     <>

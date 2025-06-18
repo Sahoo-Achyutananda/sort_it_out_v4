@@ -16,5 +16,3 @@ export default function InsertionSort() {
 export function InsertionSortPlay() {
   return <></>;
 }
-
-// export default InsertionSort;

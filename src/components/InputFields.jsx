@@ -129,10 +129,11 @@ function InputFields({
           </div>
         </Tooltip>
 
-        <div id="utilitiesDiv" className={styles.utilitiesDiv}>
+        <div className={styles.utilitiesDiv}>
           {!isPlayMode ? (
             <div className={styles.utilities}>
               <ToggleButtonGroup
+                id="utilitiesDiv"
                 color="primary"
                 size="small"
                 value={state.toggle}
@@ -159,7 +160,7 @@ function InputFields({
           )}
           {isPlayMode ? <PlayModeControls algoPlay={algoPlay} /> : ""}
           <div className={styles.modeSwitcherAndTutorial}>
-            <div className={styles.modeSwitcher}>
+            <div id="modeSwitcher" className={styles.modeSwitcher}>
               <NavLink
                 to={json.link}
                 className={`${styles.modeToggleLink} ${
@@ -179,6 +180,7 @@ function InputFields({
             </div>
             <Tooltip title="Show Tutorial" arrow>
               <button
+                id="showTutorial"
                 onClick={() => setRun((prev) => !prev)}
                 className={styles.showTutorialBtn}
               >

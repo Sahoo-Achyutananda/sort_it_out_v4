@@ -28,6 +28,7 @@ import {
 } from "@dnd-kit/sortable";
 
 import { CSS } from "@dnd-kit/utilities";
+import { toast } from "react-toastify";
 
 function PlayModeArrayContainer() {
   const { dispatch, state } = usePlayModeContext();
@@ -88,6 +89,11 @@ function PlayModeArrayContainer() {
     const lastStep = state.currentStep === state.history.length - 1;
     console.log(lastStep, state.currentStep);
     if (lastStep) {
+      toast.success("Array is Completely Sorted", {
+        position: "top-center",
+        theme: "dark",
+        autoClose: 3000,
+      });
       dispatch({ type: "SORTING_COMPLETED" });
     }
   }
