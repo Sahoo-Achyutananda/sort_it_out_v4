@@ -206,15 +206,19 @@ function InputFields({
                 </button>
               </Tooltip>
 
-              <Tooltip title="Show Instruction" arrow>
-                <button
-                  id="showInstruction"
-                  onClick={() => handleOpen()}
-                  className={styles.showInstructionsBtn}
-                >
-                  <InfoOutlineIcon fontSize="small" sx={{ color: "white" }} />
-                </button>
-              </Tooltip>
+              {isPlayMode ? (
+                <Tooltip title="Show Instruction" arrow>
+                  <button
+                    id="showInstruction"
+                    onClick={() => handleOpen()}
+                    className={styles.showInstructionsBtn}
+                  >
+                    <InfoOutlineIcon fontSize="small" sx={{ color: "white" }} />
+                  </button>
+                </Tooltip>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -226,7 +230,7 @@ function InputFields({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Instructions lines={json.instructions} />
+        <Instructions lines={json.instructions} handleClose={handleClose} />
       </Modal>
     </div>
   );
