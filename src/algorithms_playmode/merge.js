@@ -16,6 +16,7 @@ function merge(arr, l, mid, r, history) {
       if (arr[k] !== compLeft) {
         arr[k] = compLeft;
         history.push({
+          action: "merge",
           arrayState: [...arr],
           hint: `Place ${compLeft.value} at index ${k} from left subarray (index ${leftIndex})`,
         });
@@ -25,6 +26,7 @@ function merge(arr, l, mid, r, history) {
       if (arr[k] !== compRight) {
         arr[k] = compRight;
         history.push({
+          action: "merge",
           arrayState: [...arr],
           hint: `Place ${compRight.value} at index ${k} from right subarray (index ${rightIndex})`,
         });
@@ -39,6 +41,7 @@ function merge(arr, l, mid, r, history) {
       arr[k] = array_1[i];
       const sourceIndex = l + i;
       history.push({
+        action: "merge",
         arrayState: [...arr],
         hint: `Insert remaining ${array_1[i].value} at index ${k} from left subarray (index ${sourceIndex})`,
       });
@@ -52,6 +55,7 @@ function merge(arr, l, mid, r, history) {
       arr[k] = array_2[j];
       const sourceIndex = mid + 1 + j;
       history.push({
+        action: "merge",
         arrayState: [...arr],
         hint: `Insert remaining ${array_2[j].value} at index ${k} from right subarray (index ${sourceIndex})`,
       });
@@ -65,6 +69,12 @@ function mergeSort(arr, left, right, history) {
   if (left >= right) return;
 
   const mid = Math.floor((left + right) / 2);
+  history.push({
+    action: "findMid",
+    arrayState: [...arr],
+    hint: `Select the mid ${mid}`,
+    elementToHighlightAfterClick: mid, // index in the array
+  });
 
   mergeSort(arr, left, mid, history);
   mergeSort(arr, mid + 1, right, history);

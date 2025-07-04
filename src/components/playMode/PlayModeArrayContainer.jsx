@@ -4,9 +4,6 @@ import { usePlayModeContext } from "../../contexts/PlayModeContext";
 import { useRef, useState, useEffect } from "react";
 
 import Tooltip from "@mui/material/Tooltip";
-// import { ToastContainer, toast, Slide } from "react-toastify";
-// import VisibilityIcon from "@mui/icons-material/Visibility";
-// import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
 import {

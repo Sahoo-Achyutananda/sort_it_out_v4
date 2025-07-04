@@ -15,6 +15,9 @@ const initialState = {
   currentStep: 0,
   isSorting: false,
   points: 0,
+
+  // for merge sort/quick sort
+  // task : "", // for merge sort - can be findMid,merge2sortedlists,
 };
 
 function reducer(state, action) {
