@@ -110,7 +110,7 @@ npm run dev
 
 ## 🌐 Live Demo
 
-> 🔗 [Visit Sort It Out Live](https://sort-it-out-v3-achyutananda-sahoo.netlify.app)
+> 🔗 [Visit Sort It Out Live](https://sort-it-out-v4.netlify.app)
 
 ---
 
@@ -123,12 +123,6 @@ npm run dev
 
 ---
 
-<<<<<<< HEAD
-## 🧠 Quote
-
-> _“Your first love and your first project — neither ever works out perfectly, but both teach you what passion really feels like.”_
-
----
 
 <!-- ## 🤝 Contributing
 
@@ -136,17 +130,7 @@ Pull requests, feedback, and suggestions are welcome! Feel free to fork this rep
 
 --- -->
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
 
 ---
-
-## 👨‍💼 Creator
-
-**Achyutananda Sahoo**
-_Artist by passion, developer by vision._
-=======
->>>>>>> 4e4c5b7a7c5e63c88dcdbdb3d9641365985dc8e6
 
 <!-- [Portfolio Website](https://achyutananda.dev) *(optional)* -->
