@@ -1,12 +1,11 @@
-# 🧠 SORT IT OUT – Sorting Algorithm Visualizer
+# SORT IT OUT – Sorting Algorithm Visualizer
 
 **Sort It Out** is an interactive and engaging sorting algorithm visualizer built with **React**. Whether you're a student learning algorithms or a curious coder who enjoys visual interactivity, this tool makes complex sorting concepts simple, fun, and intuitive.
 
----
 
 ## ✨ Features
 
-### 🎥 Algorithm Visualizer
+### Algorithm Visualizer
 
 - Visualizes 5 classic sorting algorithms:
 
@@ -20,29 +19,26 @@
 - Control the **speed** of animations.
 - Change the **array size** dynamically.
 
-### 🏁 Race Mode
+### Race Mode
 
 - Let multiple algorithms **race side-by-side** on the same array.
 - Visually compare which algorithm performs best in real-time.
 - Designed to make time complexity comparisons **fun and competitive**.
 
-  ### Game Mode (in development)
+### Game Mode (in development)
 
-  - A user can select the "Game Mode" tab under the respective sorting visualizer link.
-  - It allows the user to manually swap the bars in adherance to the actual swaps performed by the algorithm.
-  - The user gains/looses points based on correct/incorrect swaps.
-  - Currently implemented for Bubble Sort, Insertion Sort and Selection Sort.
+- A user can select the "Game Mode" tab under the respective sorting visualizer link.
+- It allows the user to manually swap the bars in adherance to the actual swaps performed by the algorithm.
+- The user gains/looses points based on correct/incorrect swaps.
+- Currently implemented for Bubble Sort, Insertion Sort and Selection Sort.
 
-### 📚 Learn Alongside
+### Learn Alongside
 
 - Time & Space complexity details.
 - Short description and **fun historical trivia** about each algorithm.
-- Syntax-highlighted code shown for each sorting algorithm.
 
 
----
-
-## 🛠 Tech Stack
+## Tech Stack
 
 | Tech           | Purpose                   |
 | -------------- | ------------------------- |
@@ -52,19 +48,19 @@
 | Vite           | Fast dev server & bundler |
 | Netlify        | Live deployment platform  |
 
----
 
-## 🌐 Live Demo
+
+## Live Demo
 
 > 🔗 [Visit Sort It Out Live](https://sort-it-out-v4.netlify.app)
 
----
 
-## 💡 Use Cases
+## Use Cases
 
-- 📘 Ideal for students learning DSA.
-- 👩‍🏫 Great aid for teachers during lectures.
-- 🧪 Useful for visually comparing algorithm performance.
-- 🎓 Handy tool for coding bootcamps or self-paced learners.
+- Ideal for students learning DSA.
+- Great aid for teachers during lectures.
+- Ideal for students with ADHD who prefer a vizual/gamified medium to learn.
+- Useful for visually comparing algorithm performance.
+- Handy tool for coding bootcamps or self-paced learners.
 
----
+
