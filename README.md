@@ -26,25 +26,19 @@
 - Visually compare which algorithm performs best in real-time.
 - Designed to make time complexity comparisons **fun and competitive**.
 
+  ### Game Mode (in development)
+
+  - A user can select the "Game Mode" tab under the respective sorting visualizer link.
+  - It allows the user to manually swap the bars in adherance to the actual swaps performed by the algorithm.
+  - The user gains/looses points based on correct/incorrect swaps.
+  - Currently implemented for Bubble Sort, Insertion Sort and Selection Sort.
+
 ### 📚 Learn Alongside
 
 - Time & Space complexity details.
 - Short description and **fun historical trivia** about each algorithm.
 - Syntax-highlighted code shown for each sorting algorithm.
 
-### 🌟 Feedback System
-
-- Built-in feedback form for collecting user ratings (out of 10), name, and optional comments.
-- Feedback is stored in **Supabase**.
-- Each submission tracks the **page source** (i.e., where the form was submitted from).
-- Real-time **average rating display** on homepage using live data from Supabase.
-
-### 💅 Aesthetic and UX
-
-- Typing animations for a dynamic header using `react-typed`.
-- Background videos for immersive experience.
-- Fully **responsive** layout, smooth transitions, and intuitive UI/UX.
-- Toast messages for feedback submission status.
 
 ---
 
@@ -53,58 +47,10 @@
 | Tech           | Purpose                   |
 | -------------- | ------------------------- |
 | React          | Frontend framework        |
-| Supabase       | Backend database & API    |
-| React Router   | Client-side routing       |
-| React Toastify | Toast notifications       |
-| CSS Modules    | Component-scoped styling  |
+| Supabase       | Backend database & API (Used to collect User Feedback - Irrelevant to the visualizer)    |
+| Supporting Libraries/Frameworks | react-toastify, MUI Icons, MUI |
 | Vite           | Fast dev server & bundler |
 | Netlify        | Live deployment platform  |
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/sort-it-out.git
-cd sort-it-out
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure Supabase (Optional)
-
-- Here, supabase just collects feedback from the viewers.
-- Create a project on [Supabase](https://supabase.com).
-- Create a `feedback` table with the following fields:
-
-  - `name` (text)
-  - `comments` (text)
-  - `overall_rating` (integer)
-  - `source` (text)
-
-- In `utils/supabase.js`, add your Supabase URL and anonymous public key:
-
-```js
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = "https://your-project.supabase.co";
-const supabaseAnonKey = "your-anon-key";
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-export default supabase;
-```
-
-### 4. Start the development server
-
-```bash
-npm run dev
-```
 
 ---
 
@@ -122,15 +68,3 @@ npm run dev
 - 🎓 Handy tool for coding bootcamps or self-paced learners.
 
 ---
-
-
-<!-- ## 🤝 Contributing
-
-Pull requests, feedback, and suggestions are welcome! Feel free to fork this repo and submit improvements.
-
---- -->
-
-
----
-
-<!-- [Portfolio Website](https://achyutananda.dev) *(optional)* -->
