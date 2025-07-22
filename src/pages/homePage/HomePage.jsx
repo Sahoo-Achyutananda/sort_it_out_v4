@@ -12,7 +12,7 @@ import StarsIcon from "@mui/icons-material/Stars";
 import EastIcon from "@mui/icons-material/East";
 
 function HomePage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [currentRating, setCurrentRating] = useState(0);
   const [totalRating, setTotalRating] = useState(0);
   const feedbackRef = useRef(null);
@@ -49,7 +49,12 @@ function HomePage() {
               <h1>SORT IT OUT</h1>
             </div>
             <SelectNavigation text={"Algorithm"} />
-            <div className={styles.subtitleButton}>Explore Race Mode</div>
+            <div
+              className={styles.subtitleButton}
+               onClick={() => navigate("/racemode")}
+            >
+              Explore Race Mode
+            </div>
           </div>
           <div className={styles.RatingDiv}>
             <div className={styles.Rating}>
