@@ -49,7 +49,7 @@
 @media (max-width: 768px) {
   .modalBox {
     width: 80%;
-    padding: 1rem;
+    padding: 1.5rem;
   }
 }
 
@@ -73,7 +73,7 @@
   color: white;
   min-width: 30px;
   min-height: 30px;
-
+  margin-top: 0.5rem;
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -82,7 +82,28 @@
 
 .instructionContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   margin-bottom: 0.5rem;
+}
+
+.continueButton {
+  background-color: rebeccapurple;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font: bold 15px "Roboto", sans-serif;
+  margin-top: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s ease;
+}
+
+.continueButton:hover {
+  background-color: rgb(150, 0, 255);
 }

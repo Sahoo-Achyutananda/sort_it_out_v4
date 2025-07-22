@@ -1,5 +1,6 @@
 import styles from "./Instructions.module.css";
 import ClearIcon from "@mui/icons-material/Clear";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 function Instructions({ lines, handleClose }) {
   if (!lines || lines.length === 0) return null;
@@ -23,6 +24,10 @@ function Instructions({ lines, handleClose }) {
           </div>
         ))}
       </ul>
+      <button onClick={() => handleClose()} className={styles.continueButton}>
+        Continue Playing{" "}
+        <ArrowRightIcon fontSize="small" style={{ color: "white" }} />
+      </button>
     </div>
   );
 }
