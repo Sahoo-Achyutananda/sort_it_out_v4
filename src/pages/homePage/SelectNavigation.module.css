@@ -29,6 +29,23 @@
 .select {
   width: 350px;
 }
+
+.playModeAdv {
+  background-color: rgba(204, 50, 83, 0.938);
+  color: white;
+  height: auto;
+  width: auto;
+  padding: 4px;
+  border-radius: 5px;
+
+  font: 12px "Roboto", sans-serif;
+
+  display: flex;
+  gap: 20px;
+
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 600px) {
   .select {
     width: 200px !important;

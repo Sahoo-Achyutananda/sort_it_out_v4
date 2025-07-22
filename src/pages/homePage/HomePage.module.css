@@ -325,7 +325,7 @@
 }
 
 /* Underline animation using ::after */
-.raceModeText > h3::after {
+/* .raceModeText > h3::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -334,7 +334,7 @@
   width: 0;
   background-color: rgb(200, 7, 91);
   animation: underline 4s ease-out infinite;
-}
+} */
 
 @keyframes underline {
   0% {

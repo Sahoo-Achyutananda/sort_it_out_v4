@@ -101,8 +101,8 @@ function RaceMode() {
       <div className={styles.raceMode}>
         <div className={styles.raceModeText}>
           <h3>
-            {/* <TypedText>{["Check Out RACE MODE"]}</TypedText> */}
-            Check Out RACE MODE
+            <TypedText>{["Check Out RACE MODE"]}</TypedText>
+            {/* Check Out RACE MODE */}
           </h3>
           <p>
             Ever wondered which sorting algorithm is the fastest? Let them

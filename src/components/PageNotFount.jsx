@@ -12,10 +12,9 @@ export default function PageNotFound() {
       <h1 className="not-found-title">404</h1>
       <p className="not-found-subtitle">Page Not Found</p>
       <p className="not-found-description">
-        Sorry, the page you are looking for doesn't exist yet. Check out the
-        follwing algorithms -
+        Sorry, the page you are looking for doesn't exist yet.
       </p>
-      <SelectNavigation text="Select Algorithm" />
+      <SelectNavigation text="Select Algorithm to Visualize" />
       <RaceModeAdv navigate={navigate} />
       <button className="not-found-button" onClick={() => navigate(-1)}>
         ⬅ Go Back

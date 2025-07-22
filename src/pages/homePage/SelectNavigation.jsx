@@ -74,9 +74,15 @@ function SelectNavigation({ text }) {
           }}
         >
           {/* <MenuItem value="">Choose Algorithm</MenuItem> */}
-          <MenuItem value="bubble">Bubble Sort</MenuItem>
-          <MenuItem value="insertion">Insertion Sort</MenuItem>
-          <MenuItem value="selection">Selection Sort</MenuItem>
+          <MenuItem value="bubble">
+            <SelectItem title="Bubble Sort" />
+          </MenuItem>
+          <MenuItem value="insertion">
+            <SelectItem title="Insertion Sort" />
+          </MenuItem>
+          <MenuItem value="selection">
+            <SelectItem title="Selection Sort" />
+          </MenuItem>
           <MenuItem value="merge">Merge Sort</MenuItem>
           <MenuItem value="quick">Quick Sort</MenuItem>
         </Select>
@@ -85,6 +91,30 @@ function SelectNavigation({ text }) {
       <button className={styles.buttonAdd} onClick={() => handleVisualize()}>
         <SearchIcon fontSize="small" sx={{ color: "white" }} />
       </button>
+    </div>
+  );
+}
+
+function SelectItem({ title }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      {title}
+      <PlayModeAdv />
+    </div>
+  );
+}
+
+function PlayModeAdv() {
+  return (
+    <div className={styles.playModeAdv}>
+      <p>with Game Mode</p>
     </div>
   );
 }
