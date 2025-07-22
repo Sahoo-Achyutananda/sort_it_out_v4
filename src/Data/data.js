@@ -60,10 +60,12 @@ function bubbleSort(arr) {
     description:
       "Insertion Sort builds the final sorted array one item at a time. It removes one element from the input data, finds the location it belongs to in the sorted list, and inserts it there.",
     instructions: [
-      "Start from the second element and move left to find its correct position.",
-      "Shift elements to the right to make space for the current element.",
+      "Drag the bars one by one to the left to find its correct position.",
+      "As you move the bars, the other bars shift to the right to make space for the current element.",
       "Insert the element at the correct position in the sorted portion.",
       "The left side of the array becomes sorted step by step.",
+      "Ignore the bars that are already sorted in previous steps.",
+      "The first element is considered sorted initially.",
     ],
     code: `
 function insertionSort(arr) {
@@ -96,8 +98,9 @@ function insertionSort(arr) {
     description:
       "Selection Sort repeatedly finds the minimum element from the unsorted portion and moves it to the beginning. It divides the array into sorted and unsorted subarrays.",
     instructions: [
+      "The first element is considered sorted initially. If you see a group of bars that are already sorted before playing, ignore them.",
       "At each step, find the minimum element in the unsorted portion.",
-      "Swap it with the element at the current position.",
+      "Swap it with the rightmost element of the sorted portion.",
       "Repeat this process for the remaining unsorted elements.",
       "Ignore the bars that are already sorted in previous steps.",
     ],
