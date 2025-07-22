@@ -56,14 +56,6 @@ function HomePage() {
                 onClick={() => navigate("/racemode")}
               >
                 Race Mode{" "}
-              </a>{" "}
-              | {/* <CircleIcon fontSize="small" /> Visit{" "} */}
-              Visit{" "}
-              <a
-                style={{ color: "blue", cursor: "pointer" }}
-                href="https://sort-it-out-v2-achyutananda-sahoo.netlify.app/"
-              >
-                Version 2
               </a>
             </div>
           </div>

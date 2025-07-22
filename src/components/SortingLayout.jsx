@@ -34,7 +34,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Control Speed"
               para="Adjust the speed of the sorting animation for a smoother experience."
-              image="/assets/speed.png"
             />
           ),
           disableBeacon: true,
@@ -45,7 +44,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Set Array Size"
               para="Select the number of elements to visualize during sorting."
-              image="/assets/array-size.png"
             />
           ),
           disableBeacon: true,
@@ -55,8 +53,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
           content: (
             <Tutorial
               title="Utility Panel"
-              para="Switch between bar or box views and generate a fresh array."
-              image="/assets/utility-panel.png"
+              para="Switch between bar or box views."
             />
           ),
           disableBeacon: true,
@@ -67,7 +64,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Sorting Visualization"
               para="Watch the sorting algorithm animate here in real-time."
-              image="/assets/array-visual.png"
             />
           ),
           disableBeacon: true,
@@ -79,7 +75,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Interactive Timeline"
               para="Navigate back and forth through the sorting process once started."
-              image="/assets/timeline.png"
             />
           ),
           disableBeacon: true,
@@ -90,7 +85,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Start Algorithm"
               para="Click to begin the visualization of the selected sorting algorithm."
-              image="/assets/start.png"
             />
           ),
           disableBeacon: true,
@@ -101,7 +95,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Step Backward"
               para="Go one step back in the algorithm execution timeline."
-              image="/assets/rewind.png"
             />
           ),
           disableBeacon: true,
@@ -112,7 +105,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Step Forward"
               para="Move one step forward in the algorithm's timeline."
-              image="/assets/forward.png"
             />
           ),
           disableBeacon: true,
@@ -123,7 +115,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Reset Visualization"
               para="Restart the sorting process or generate a new array."
-              image="/assets/reset.png"
             />
           ),
           disableBeacon: true,
@@ -134,7 +125,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Execution Transcript"
               para="Displays a step-by-step description of what the algorithm is doing."
-              image="/assets/transcript.png"
             />
           ),
           placement: "left",
@@ -146,7 +136,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Comparison & Swap Count"
               para="Track the number of comparisons and swaps made by the algorithm."
-              image="/assets/counts.png"
             />
           ),
           placement: "left",
@@ -158,7 +147,6 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
             <Tutorial
               title="Toggle Modes"
               para="Switch between Visualizer and Game Mode"
-              image="/assets/sorting-area.png"
             />
           ),
           disableBeacon: true,
@@ -272,6 +260,7 @@ function SortingLayout({ algorithm, algorithmPlay, json }) {
               para="At any point of time, feel free to revisit this Tutorial."
             />
           ),
+          placement: "right",
           // disableBeacon: true,
         },
       ]);
