@@ -12,7 +12,7 @@ import StarsIcon from "@mui/icons-material/Stars";
 import EastIcon from "@mui/icons-material/East";
 
 function HomePage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [currentRating, setCurrentRating] = useState(0);
   const [totalRating, setTotalRating] = useState(0);
   const feedbackRef = useRef(null);
