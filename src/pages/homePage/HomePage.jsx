@@ -43,21 +43,13 @@ function HomePage() {
         <div className={styles.HeroSection}>
           <div className={styles.titleCard}>
             <div className={styles.element}>
-              <TypedText>{["Analyze", "Vizualize", "Play"]}</TypedText>
+              <TypedText>{["Analyze", "Visualize", "Play"]}</TypedText>
             </div>
             <div className={styles.title}>
               <h1>SORT IT OUT</h1>
             </div>
             <SelectNavigation text={"Algorithm"} />
-            <div className={styles.subtitle}>
-              Visit{" "}
-              <a
-                style={{ color: "blue", cursor: "pointer" }}
-                onClick={() => navigate("/racemode")}
-              >
-                Race Mode{" "}
-              </a>
-            </div>
+            <div className={styles.subtitleButton}>Explore Race Mode</div>
           </div>
           <div className={styles.RatingDiv}>
             <div className={styles.Rating}>

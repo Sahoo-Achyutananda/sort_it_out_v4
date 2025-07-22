@@ -10,16 +10,22 @@ function RouteChangeWrapper({ children }) {
     const path = location.pathname;
 
     const titleMap = {
-      "/": "Home | Sort It Out - v3 ",
-      "/bubble": "Bubble Sort | Sort It Out - v3 ",
-      "/selection": "Selection Sort | Sort It Out - v3 ",
-      "/insertion": "Insertion Sort | Sort It Out - v3 ",
-      "/merge": "Merge Sort | Sort It Out - v3 ",
-      "/quick": "Quick Sort | Sort It Out - v3 ",
-      "/racemode": "Race Mode | Sort It Out - v3 ",
+      "/": "Home | SORT IT OUT ",
+      "/bubble": "Bubble Sort | SORT IT OUT ",
+      "/selection": "Selection Sort | SORT IT OUT ",
+      "/insertion": "Insertion Sort | SORT IT OUT ",
+      "/merge": "Merge Sort | SORT IT OUT ",
+      "/quick": "Quick Sort | SORT IT OUT ",
+      "/racemode": "Race Mode | SORT IT OUT ",
+      "/bubble/play": "Bubble Sort | Play Mode | SORT IT OUT ",
+      "/selection/play": "Selection Sort | Play Mode | SORT IT OUT ",
+      "/insertion/play": "Insertion Sort | Play Mode | SORT IT OUT ",
+      "/merge/play": "Merge Sort | Play Mode | SORT IT OUT ",
+      "/quick/play": "Quick Sort | Play Mode | SORT IT OUT ",
+      "/racemode/play": "Race Mode | Play Mode | SORT IT OUT ",
     };
 
-    document.title = titleMap[path] || "Sort It Out ";
+    document.title = titleMap[path] || "SORT IT OUT ";
   }, [location]);
 
   // useEffect(() => {
