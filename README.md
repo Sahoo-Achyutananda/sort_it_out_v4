@@ -1,12 +1,11 @@
-# 🧠 SORT IT OUT – Sorting Algorithm Visualizer
+# SORT IT OUT – Sorting Algorithm Visualizer
 
 **Sort It Out** is an interactive and engaging sorting algorithm visualizer built with **React**. Whether you're a student learning algorithms or a curious coder who enjoys visual interactivity, this tool makes complex sorting concepts simple, fun, and intuitive.
 
----
 
 ## ✨ Features
 
-### 🎥 Algorithm Visualizer
+### Algorithm Visualizer
 
 - Visualizes 5 classic sorting algorithms:
 
@@ -20,117 +19,48 @@
 - Control the **speed** of animations.
 - Change the **array size** dynamically.
 
-### 🏁 Race Mode
+### Race Mode
 
 - Let multiple algorithms **race side-by-side** on the same array.
 - Visually compare which algorithm performs best in real-time.
 - Designed to make time complexity comparisons **fun and competitive**.
 
-### 📚 Learn Alongside
+### Game Mode (in development)
+
+- A user can select the "Game Mode" tab under the respective sorting visualizer link.
+- It allows the user to manually swap the bars in adherance to the actual swaps performed by the algorithm.
+- The user gains/looses points based on correct/incorrect swaps.
+- Currently implemented for Bubble Sort, Insertion Sort and Selection Sort.
+
+### Learn Alongside
 
 - Time & Space complexity details.
 - Short description and **fun historical trivia** about each algorithm.
-- Syntax-highlighted code shown for each sorting algorithm.
 
-### 🌟 Feedback System
 
-- Built-in feedback form for collecting user ratings (out of 10), name, and optional comments.
-- Feedback is stored in **Supabase**.
-- Each submission tracks the **page source** (i.e., where the form was submitted from).
-- Real-time **average rating display** on homepage using live data from Supabase.
-
-### 💅 Aesthetic and UX
-
-- Typing animations for a dynamic header using `react-typed`.
-- Background videos for immersive experience.
-- Fully **responsive** layout, smooth transitions, and intuitive UI/UX.
-- Toast messages for feedback submission status.
-
----
-
-## 🛠 Tech Stack
+## Tech Stack
 
 | Tech           | Purpose                   |
 | -------------- | ------------------------- |
 | React          | Frontend framework        |
-| Supabase       | Backend database & API    |
-| React Router   | Client-side routing       |
-| React Toastify | Toast notifications       |
-| CSS Modules    | Component-scoped styling  |
+| Supabase       | Backend database & API (Used to collect User Feedback - Irrelevant to the visualizer)    |
+| Supporting Libraries/Frameworks | react-toastify, MUI Icons, MUI |
 | Vite           | Fast dev server & bundler |
 | Netlify        | Live deployment platform  |
 
----
 
-## 🚀 Getting Started
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/sort-it-out.git
-cd sort-it-out
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure Supabase (Optional)
-
-- Here, supabase just collects feedback from the viewers.
-- Create a project on [Supabase](https://supabase.com).
-- Create a `feedback` table with the following fields:
-
-  - `name` (text)
-  - `comments` (text)
-  - `overall_rating` (integer)
-  - `source` (text)
-
-- In `utils/supabase.js`, add your Supabase URL and anonymous public key:
-
-```js
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = "https://your-project.supabase.co";
-const supabaseAnonKey = "your-anon-key";
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-export default supabase;
-```
-
-### 4. Start the development server
-
-```bash
-npm run dev
-```
-
----
-
-## 🌐 Live Demo
+## Live Demo
 
 > 🔗 [Visit Sort It Out Live](https://sort-it-out-v4.netlify.app)
 
----
 
-## 💡 Use Cases
+## Use Cases
 
-- 📘 Ideal for students learning DSA.
-- 👩‍🏫 Great aid for teachers during lectures.
-- 🧪 Useful for visually comparing algorithm performance.
-- 🎓 Handy tool for coding bootcamps or self-paced learners.
-
----
+- Ideal for students learning DSA.
+- Great aid for teachers during lectures.
+- Ideal for students with ADHD who prefer a vizual/gamified medium to learn.
+- Useful for visually comparing algorithm performance.
+- Handy tool for coding bootcamps or self-paced learners.
 
 
-<!-- ## 🤝 Contributing
-
-Pull requests, feedback, and suggestions are welcome! Feel free to fork this repo and submit improvements.
-
---- -->
-
-
----
-
-<!-- [Portfolio Website](https://achyutananda.dev) *(optional)* -->
