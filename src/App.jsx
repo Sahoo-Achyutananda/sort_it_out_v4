@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SelectionSort, { SelectionSortPlay } from "./pages/SelectionSort";
 import InsertionSort, { InsertionSortPlay } from "./pages/InsertionSort";
 import MergeSort, { MergeSortPlay } from "./pages/MergeSort";
-import QuickSort from "./pages/QuickSort";
+import QuickSort, { QuickSortPlay } from "./pages/QuickSort";
 import RaceMode from "./pages/raceMode/RaceMode";
 import HomePage from "./pages/homePage/HomePage.jsx";
 import RouteChangeWrapper from "./RouteChangeWrapper.jsx";
@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { PlayModeProvider } from "./contexts/PlayModeContext.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
+import PageNotFound from "./components/PageNotFount.jsx";
 
 function App() {
   // useEffect(() => {
@@ -43,6 +44,7 @@ function App() {
             transition={Bounce}
           />
           <Routes>
+            <Route path="*" element={<PageNotFound />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/bubble" element={<BubbleSort />}>
               <Route index element={null} />{" "}
@@ -58,9 +60,12 @@ function App() {
             </Route>
             <Route path="/merge" element={<MergeSort />}>
               <Route index element={null} />{" "}
-              <Route path="play" element={<MergeSortPlay />} />
+              {/* <Route path="play" element={<MergeSortPlay />} /> */}
             </Route>
-            <Route path="/quick" element={<QuickSort />} />
+            <Route path="/quick" element={<QuickSort />}>
+              <Route index element={null} />{" "}
+              {/* <Route path="play" element={<QuickSortPlay />} /> */}
+            </Route>
             <Route path="/racemode" element={<RaceMode />} />
           </Routes>
           <Footer></Footer>

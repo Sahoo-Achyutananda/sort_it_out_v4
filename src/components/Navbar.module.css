@@ -35,4 +35,9 @@
   .advBoard {
     display: none;
   }
+  .raceModeAdv {
+    width: 80%;
+    padding: 10px;
+    justify-content: center;
+  }
 }

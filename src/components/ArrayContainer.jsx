@@ -22,11 +22,6 @@ function ArrayContainer({ state, dispatch, algo }) {
     let interval;
     if (state.currentStep === state.history.length - 1) {
       dispatch({ type: "sortingCompleted" });
-      // toast.success("Array is Completely Sorted", {
-      //   position: "top-center",
-      //   theme: "dark",
-      //   autoClose: 3000,
-      // });
     }
     if (state.isPlaying) {
       interval = setInterval(() => {
@@ -91,6 +86,7 @@ function Counts({ state }) {
     </div>
   );
 }
+
 function Bar({ arrayContainerRef, state, height, index }) {
   const [dimensions, setDimensions] = useState({
     height: "50px",

@@ -111,7 +111,7 @@ export default function Navbar() {
 //   return <div>You're my something something -</div>;
 // }
 
-function RaceModeAdv({ navigate }) {
+export function RaceModeAdv({ navigate }) {
   return (
     <div className={styles.raceModeAdv} onClick={() => navigate("/racemode")}>
       <p>

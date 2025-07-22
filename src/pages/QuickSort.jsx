@@ -3,9 +3,16 @@ import algoInformation from "../Data/data";
 import performQuickSort from "../algorithms/quick";
 
 function QuickSort() {
-    return (
-        <SortingLayout algorithm={performQuickSort} json = {algoInformation.quickSort}/>
-    );
+  return (
+    <SortingLayout
+      algorithm={performQuickSort}
+      json={algoInformation.quickSort}
+    />
+  );
 }
 
-export default QuickSort
+export function QuickSortPlay() {
+  return <>Coming soon...</>;
+}
+
+export default QuickSort;
