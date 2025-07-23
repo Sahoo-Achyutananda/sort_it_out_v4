@@ -114,7 +114,7 @@ function SelectItem({ title }) {
 function PlayModeAdv() {
   return (
     <div className={styles.playModeAdv}>
-      <p>with Game Mode</p>
+      <p>Game Mode</p>
     </div>
   );
 }
